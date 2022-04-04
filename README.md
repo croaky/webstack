@@ -1,2 +1,3 @@
-# micro
-Playing with micro web frameworks on various hosting platforms
+# webstack
+
+Prototypes with various languages, frameworks, and hosting platforms.
