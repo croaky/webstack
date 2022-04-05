@@ -1,4 +1,4 @@
-# Ruby on Fly.io
+# Fly.io Ruby Sinatra Postgres
 
 Develop app locally:
 
