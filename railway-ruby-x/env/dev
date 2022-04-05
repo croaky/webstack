@@ -1,4 +1,4 @@
 APP_ENV=dev
-DATABASE_URL=postgresql://postgres:S2qRHiUl5jG5b2TcAcqN@containers-us-west-28.railway.app:7118/railway
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/webstack_dev
 PUMA_THREADS=2
 PUMA_WORKERS=2

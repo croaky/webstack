@@ -16,8 +16,6 @@ Select this repo.
 Select `main` branch.
 Click "Deploy".
 
-It will fail.
-
 Click "+ New" button.
 Click "Database".
 Click "Add PostgreSQL".
@@ -31,5 +29,4 @@ Enter `DATABASE_URL` and paste copied string.
 
 Click "Settings" tab.
 Set "Root directory" to `/railway-ruby-sinatra`.
-Set "Start Command" to `bundle exec ruby app.rb`.
 Set "Healthcheck Path" to `/`.
