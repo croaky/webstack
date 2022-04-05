@@ -1,0 +1,57 @@
+<head>
+  <title>webstack</title>
+  <style>
+    @import url('https://rsms.me/inter/inter.css');
+    html { font-family: 'Inter', sans-serif; }
+    @supports (font-variation-settings: normal) {
+      html { font-family: 'Inter var', sans-serif; }
+    }
+    main {
+      padding: 10px 32px;
+    }
+    iframe {
+      border: none;
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>webstack</h1>
+    <p>
+      A project to prototype programming languages and hosting platforms.
+      Source code: <a href="https://github.com/croaky/webstack">croaky/webstack</a>.
+      I'm interested in experiencing each language and hosting platform.
+    </p>
+    <p>
+      I'd like to try a matrix of languages that
+      <code>SELECT 1</code> to a SQL database (mainly Postgres)
+      using a popular database driver (no ORM),
+      returning a JSON payload of <code>{ "status": "ok" }</code>,
+      deployed to modern hosting platforms.
+    </p>
+    <p>
+      The micro-frameworks include
+      <a href="http://sinatrarb.com/">Sinatra (Ruby)</a>,
+      <a href="https://github.com/gin-gonic/gin">Gin (Go)</a>,
+      <a href="https://expressjs.com/">Express (Node)</a>,
+      <a href="https://oakserver.github.io/oak/">Oak (Deno)</a>,
+      and <a href="https://kemalcr.com/">Kemal (Crystal)</a>.
+    </p>
+    <p>
+      The modern hosting platforms include
+      <a href="https://deno.com/deploy">Deno Deploy</a>,
+      <a href="http://fly.io">Fly</a>,
+      <a href="https://netlify.com">Netlify</a>.
+      <a href="https://railway.app">Railway</a>,
+      <a href="https://render.com">Render</a>,
+      and <a href="https://vercel.com">Vercel<a/>.
+    </p>
+    <p>
+      In addition to experience, I'm interested latencies on each platform.
+      The dashboard below should track latencies in real-time.
+    </p>
+  </main>
+  <iframe src="https://webstack.checklyhq.com/" />
+</body>
