@@ -1,6 +1,6 @@
 # webstack
 
-A project to prototype web stacks: frameworks, runtimes, databases, and hosting platforms.
+A project to prototype web stacks: runtimes, frameworks, databases, and hosting platforms.
 
 For each stack,
 `SELECT 1` to a SQL database
@@ -10,13 +10,13 @@ deployed to a modern hosting platform.
 
 Unless otherwise stated, Postgres is the database.
 
-Frameworks (runtimes):
+Runtimes / frameworks:
 
-* [Sinatra (Ruby)](http://sinatrarb.com/)
-* [Gin (Go)](https://github.com/gin-gonic/gin)
-* [Express (Node)](https://expressjs.com/)
-* [Oak (Deno)](https://oakserver.github.io/oak/)
-* [Kemal (Crystal)](https://kemalcr.com/)
+* Crystal / [Kemal](https://kemalcr.com/)
+* Deno / stdlib, [Oak](https://oakserver.github.io/oak/)
+* Go / stdlib, [Gin](https://github.com/gin-gonic/gin)
+* Node / [Express](https://expressjs.com/)
+* Ruby / [Sinatra](http://sinatrarb.com/), X
 
 The dashboard at <https://webstack.checklyhq.com/>
 shows real-time latencies from

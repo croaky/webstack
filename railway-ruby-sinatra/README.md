@@ -1,9 +1,14 @@
-# Railway Ruby X
+# Railway Ruby Sinatra
 
 See example deployed at
-<https://webstack-ruby-x.up.railway.app/>.
+<https://webstack-ruby-sinatra.up.railway.app/>.
 
 ## Setup
+
+```
+bundle
+bundle exec ruby app.rb
+```
 
 Go to <https://railway.app/new>.
 Click "Deploy from Repo".
@@ -25,11 +30,6 @@ Click "+ New Variable".
 Enter `DATABASE_URL` and paste copied string.
 
 Click "Settings" tab.
-Set "Root directory" to `/railway-ruby-x`.
+Set "Root directory" to `/railway-ruby-sinatra`.
+Set "Start Command" to `bundle exec ruby app.rb`.
 Set "Healthcheck Path" to `/`.
-
-## Editorial
-
-* The web UI is outstanding.
-* Failed deploys were easy to debug.
-* The first successful deployment took about.
