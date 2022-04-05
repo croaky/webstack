@@ -1,0 +1,4 @@
+APP_ENV=dev
+DATABASE_URL=postgresql://postgres:S2qRHiUl5jG5b2TcAcqN@containers-us-west-28.railway.app:7118/railway
+PUMA_THREADS=2
+PUMA_WORKERS=2
