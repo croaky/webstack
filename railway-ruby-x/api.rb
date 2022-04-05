@@ -7,7 +7,7 @@ X::API.serve do |db|
     db.exec "SELECT 1"
     [
       200,
-      resp.headers.merge("Cache-Control" => "max-age=3600"),
+      resp.headers,
       {status: "ok"}.to_json
     ]
   end

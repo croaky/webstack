@@ -19,5 +19,5 @@ Frameworks (runtimes):
 * [Kemal (Crystal)](https://kemalcr.com/)
 
 The dashboard at <https://webstack.checklyhq.com/>
-shows aggregated real-time latencies from
+shows real-time latencies from
 Northern California, Montreal, Ireland, Stockholm, and Sydney.
