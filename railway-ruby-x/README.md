@@ -5,6 +5,16 @@ See example deployed at
 
 ## Setup
 
+Develop locally:
+
+```
+bundle
+createdb webstack_dev
+bundle exec ruby api.rb
+```
+
+Setup Railway:
+
 Go to <https://railway.app/new>.
 Click "Deploy from Repo".
 Select this repo.
