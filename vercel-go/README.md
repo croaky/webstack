@@ -1,5 +1,8 @@
 # Vercel Go
 
+See example deployed at
+<https://webstack-go.vercel.app/api>.
+
 Vercel supports [serverless functions written in
 Go](https://vercel.com/docs/concepts/functions/supported-languages#go).
 
