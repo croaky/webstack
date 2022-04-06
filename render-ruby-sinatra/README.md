@@ -29,3 +29,10 @@ Set "Plans" to "Free".
 Click "Advanced".
 Click "Add Environment Variable".
 Paste "Internal Connection String" value from above into new `DATABASE_URL` env var.
+
+## Editorial
+
+* The [Render docs](https://render.com/docs/deploy-rails#additional-notes) say
+  "By default, Render uses the latest LTS version of Ruby" but using
+  `ruby "~> 3"` in the `Gemfile` resulted in build errors:
+  "Your Ruby version is 2.6.8, but your Gemfile specified ~> 3".
