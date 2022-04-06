@@ -1,3 +1,5 @@
+// +heroku goVersion 1.18
+
 module github.com/croaky/webstack/heroku-go-gin
 
 go 1.18
