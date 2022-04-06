@@ -2,7 +2,7 @@ const express = require("express");
 const { Client } = require("pg");
 
 // env
-const conn = process.env.PORT || "postgres:///webstack_dev";
+const conn = process.env.DATABASE_URL || "postgres:///webstack_dev";
 const port = process.env.PORT || 3000;
 
 // db
