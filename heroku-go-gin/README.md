@@ -11,5 +11,10 @@ Go to <https://dashboard.heroku.com/apps>.
 Click "New" > "Create new app".
 Give it a name and submit.
 
-From the command line, `heroku login`.
-Add the remote `heroku git:remote -a name-you-used`.
+```
+heroku login
+heroku git:remote -a <app>
+heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
+heroku buildpacks:add -a <app> heroku/go
+heroku config:set APP_BASE=heroku-go-gin -a webstack-go-gin
+```
