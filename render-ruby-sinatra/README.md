@@ -36,3 +36,5 @@ Paste "Internal Connection String" value from above into new `DATABASE_URL` env 
   "By default, Render uses the latest LTS version of Ruby" but using
   `ruby "~> 3"` in the `Gemfile` resulted in build errors:
   "Your Ruby version is 2.6.8, but your Gemfile specified ~> 3".
+* Databases are backed up daily, not continuously.
+* HA databases are not available.
