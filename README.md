@@ -1,7 +1,6 @@
 # webstack
 
-A project to prototype web stacks:
-runtimes + frameworks + databases + hosting platforms.
+A project to prototype web stacks.
 
 For each stack,
 `SELECT 1` to a Postgres database
@@ -27,4 +26,4 @@ Hosting platforms:
 
 The dashboard at <https://webstack.checklyhq.com/>
 shows real-time latencies from
-Northern California, Montreal, Ireland, Stockholm, and Sydney.
+N. California, Montreal, Ireland, Stockholm, and Sydney.
