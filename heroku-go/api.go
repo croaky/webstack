@@ -2,10 +2,10 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
+	"net/http"
 	"os"
-
-	"github.com/gin-gonic/gin"
 
 	_ "github.com/lib/pq"
 )
@@ -21,24 +21,20 @@ func main() {
 		dbUrl = "postgres:///webstack_dev"
 	}
 
-	// db conn
+	// db
 	db, err := sql.Open("postgres", dbUrl)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// router
-	router := gin.New()
-	router.Use(gin.Logger())
-
-	router.GET("/", func(ctx *gin.Context) {
+	// http
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		db.Query("SELECT 1")
-
-		ctx.JSON(200, gin.H{
-			"status": "ok",
-		})
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, "{status:\"ok\"}")
 	})
 
 	// serve
-	router.Run(":" + port)
+	log.Println("Listening at http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

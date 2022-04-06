@@ -11,7 +11,7 @@ Runtimes / frameworks:
 
 * Crystal / [Kemal](https://kemalcr.com/)
 * Deno / stdlib
-* Go / [Gin](https://github.com/gin-gonic/gin)
+* Go / stdlib
 * Node / [Express](https://expressjs.com/)
 * Ruby / [Sinatra](http://sinatrarb.com/)
 
