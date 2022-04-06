@@ -1,13 +1,44 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"database/sql"
+	"log"
+	"os"
+
+	"github.com/gin-gonic/gin"
+
+	_ "github.com/lib/pq"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
+	// env
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	dbUrl := os.Getenv("DATABASE_URL")
+	if dbUrl == "" {
+		dbUrl = "postgres:///webstack_dev"
+	}
+
+	// db conn
+	db, err := sql.Open("postgres", dbUrl)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// router
+	router := gin.New()
+	router.Use(gin.Logger())
+
+	router.GET("/", func(ctx *gin.Context) {
+		db.Query("SELECT 1")
+
+		ctx.JSON(200, gin.H{
 			"status": "ok",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+
+	// serve
+	router.Run(":" + port)
 }
