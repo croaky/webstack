@@ -11,10 +11,10 @@ and return a JSON payload of `{ "status": "ok" }`.
 Runtimes / frameworks:
 
 * Crystal / [Kemal](https://kemalcr.com/)
-* Deno / stdlib, [Oak](https://oakserver.github.io/oak/)
-* Go / stdlib, [Gin](https://github.com/gin-gonic/gin)
+* Deno / stdlib
+* Go / [Gin](https://github.com/gin-gonic/gin)
 * Node / [Express](https://expressjs.com/)
-* Ruby / [Sinatra](http://sinatrarb.com/), X
+* Ruby / [Sinatra](http://sinatrarb.com/)
 
 Hosting platforms:
 
