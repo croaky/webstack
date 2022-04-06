@@ -9,17 +9,18 @@ and return a JSON payload of `{ "status": "ok" }`.
 
 Runtimes / frameworks:
 
-* Crystal / [Kemal](https://kemalcr.com/)
-* Deno / stdlib
+* Crystal / [Kemal](https://kemalcr.com/) (TODO)
+* Deno / stdlib (TODO)
 * Go / stdlib
 * Node / [Express](https://expressjs.com/)
 * Ruby / [Sinatra](http://sinatrarb.com/)
 
 Hosting platforms:
 
-* [Deno Deploy](https://deno.com/deploy)
+* [Deno Deploy](https://deno.com/deploy) (TODO)
+* [Fly.io](https://fly.io)
 * [Heroku](https://heroku.com)
-* [Netlify](https://netlify.com)
+* [Netlify](https://netlify.com) (TODO)
 * [Railway](https://railway.app)
 * [Render](https://render.com)
 * [Vercel](https://vercel.com)
