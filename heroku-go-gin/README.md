@@ -18,3 +18,7 @@ heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monore
 heroku buildpacks:add -a <app> heroku/go
 heroku config:set APP_BASE=heroku-go-gin -a webstack-go-gin
 ```
+
+## Editorial
+
+* From `git push` to build finishing and process restarting is ~10s.
