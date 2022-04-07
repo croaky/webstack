@@ -8,7 +8,7 @@ See example deployed at
 ```
 shards install
 createdb webstack_dev
-DATABASE_URL="postgres:///webstack_dev" crystal run api.cr
+DATABASE_URL="postgres:///webstack_dev" crystal run src/api.cr
 ```
 
 Go to <https://dashboard.heroku.com/apps>.

@@ -8,4 +8,4 @@ dependencies:
 
 targets:
   api:
-    main: "api.cr"
+    main: "src/api.cr"
