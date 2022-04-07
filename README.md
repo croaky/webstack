@@ -9,7 +9,7 @@ and return a JSON payload of `{ "status": "ok" }`.
 
 Runtimes / frameworks:
 
-* Crystal / [Kemal](https://kemalcr.com/) (TODO)
+* Crystal / [Kemal](https://kemalcr.com/)
 * Deno / stdlib (TODO)
 * Go / stdlib
 * Node / [Express](https://expressjs.com/)

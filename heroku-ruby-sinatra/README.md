@@ -1,14 +1,14 @@
-# Heroku Node Express
+# Heroku Ruby Sinatra
 
 See example deployed at
-<https://webstack-node-express.herokuapp.com/>.
+<https://webstack-ruby-sinatra.herokuapp.com/>.
 
 ## Setup
 
 ```
-npm install
+bundle
 createdb webstack_dev
-DATABASE_URL="postgres:///webstack_dev" node api.js
+DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb
 ```
 
 Go to <https://dashboard.heroku.com/apps>.
@@ -20,9 +20,9 @@ Click "Enable Automatic Deploys"
 ```
 heroku login
 heroku git:remote -a <app>
-git remote rename heroku heroku-node-express
+git remote rename heroku heroku-ruby-sinatra
 heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
-heroku buildpacks:add -a <app> heroku/nodejs
-heroku config:set APP_BASE=heroku-node-express -a <app>
+heroku buildpacks:add -a <app> heroku/ruby
+heroku config:set APP_BASE=heroku-ruby-sinatra -a <app>
 heroku addons:create heroku-postgresql:hobby-dev -a <app>
 ```

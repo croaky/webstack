@@ -11,8 +11,6 @@ createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb
 ```
 
-Set up Railway:
-
 Go to <https://railway.app/new>.
 Click "Deploy from Repo".
 Select this repo.
