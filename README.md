@@ -3,9 +3,8 @@
 A project to prototype web stacks.
 
 For each stack,
-`SELECT 1` to a Postgres database
-using a database driver (no ORM)
-and return a JSON payload of `{ "status": "ok" }`.
+`SELECT 1` to a SQL database
+and respond with JSON `{ "status": "ok" }`.
 
 Runtimes:
 
@@ -15,7 +14,7 @@ Runtimes:
 * Node ([Express](https://expressjs.com/))
 * Ruby ([Sinatra](http://sinatrarb.com/))
 
-Hosting platforms:
+Hosts:
 
 * [Deno Deploy](https://deno.com/deploy)
 * [Fly.io](https://fly.io)
