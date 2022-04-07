@@ -1,8 +1,14 @@
+require "db"
 require "kemal"
+require "json"
+require "pg"
 
-get "/" do |env|
-  env.response.content_type = "application/json"
-  {"status": "ok"}.to_json
+DB.open(ENV["DATABASE_URL"]) do |db|
+  get "/" do |env|
+    db.exec "SELECT 1"
+    env.response.content_type = "application/json"
+    {"status": "ok"}.to_json
+  end
+
+  Kemal.run
 end
-
-Kemal.run

@@ -5,6 +5,8 @@ crystal: 1.4.0
 dependencies:
   kemal:
     github: kemalcr/kemal
+  pg:
+    github: will/crystal-pg
 
 targets:
   api:
