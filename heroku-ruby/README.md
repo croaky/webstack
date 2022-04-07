@@ -1,4 +1,4 @@
-# Heroku Ruby Sinatra
+# Heroku Ruby
 
 See example deployed at
 <https://webstack-ruby-sinatra.herokuapp.com/>.
@@ -20,9 +20,9 @@ Click "Enable Automatic Deploys"
 ```
 heroku login
 heroku git:remote -a <app>
-git remote rename heroku heroku-ruby-sinatra
+git remote rename heroku heroku-ruby
 heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
 heroku buildpacks:add -a <app> heroku/ruby
-heroku config:set APP_BASE=heroku-ruby-sinatra -a <app>
+heroku config:set APP_BASE=heroku-ruby -a <app>
 heroku addons:create heroku-postgresql:hobby-dev -a <app>
 ```
