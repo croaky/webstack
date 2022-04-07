@@ -7,13 +7,13 @@ For each stack,
 using a database driver (no ORM)
 and return a JSON payload of `{ "status": "ok" }`.
 
-Runtimes / frameworks:
+Runtimes:
 
-* Crystal / [Kemal](https://kemalcr.com/)
-* Deno / [stdlib](https://deno.land/std)
-* Go / [stdlib](https://pkg.go.dev/std)
-* Node / [Express](https://expressjs.com/)
-* Ruby / [Sinatra](http://sinatrarb.com/)
+* Crystal ([Kemal](https://kemalcr.com/))
+* Deno ([stdlib](https://deno.land/std))
+* Go ([stdlib](https://pkg.go.dev/std))
+* Node ([Express](https://expressjs.com/))
+* Ruby ([Sinatra](http://sinatrarb.com/))
 
 Hosting platforms:
 
@@ -24,6 +24,5 @@ Hosting platforms:
 * [Render](https://render.com)
 * [Vercel](https://vercel.com)
 
-The dashboard at <https://webstack.checklyhq.com/>
-shows real-time request data from
+<https://webstack.checklyhq.com/> shows real-time requests from
 N. California, Montreal, Ireland, Stockholm, and Sydney.
