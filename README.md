@@ -17,7 +17,7 @@ Runtimes / frameworks:
 
 Hosting platforms:
 
-* [Deno Deploy](https://deno.com/deploy) (TODO)
+* [Deno Deploy](https://deno.com/deploy)
 * [Fly.io](https://fly.io)
 * [Heroku](https://heroku.com)
 * [Netlify](https://netlify.com) (TODO)
