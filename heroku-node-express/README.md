@@ -16,6 +16,8 @@ Click "Enable Automatic Deploys"
 
 ```
 heroku login
+heroku git:remote -a <app>
+-git remote rename heroku heroku-node-express
 heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
 heroku buildpacks:add -a <app> heroku/nodejs
 heroku config:set APP_BASE=heroku-node-express -a <app>

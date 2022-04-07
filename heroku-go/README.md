@@ -17,6 +17,8 @@ Click "Enable Automatic Deploys"
 
 ```
 heroku login
+heroku git:remote -a <app>
+-git remote rename heroku heroku-go
 heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
 heroku buildpacks:add -a <app> heroku/go
 heroku config:set APP_BASE=heroku-go -a <app>
