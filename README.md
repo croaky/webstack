@@ -10,8 +10,8 @@ and return a JSON payload of `{ "status": "ok" }`.
 Runtimes / frameworks:
 
 * Crystal / [Kemal](https://kemalcr.com/)
-* Deno / stdlib
-* Go / stdlib
+* Deno / [stdlib](https://deno.land/std)
+* Go / [stdlib](https://pkg.go.dev/std)
 * Node / [Express](https://expressjs.com/)
 * Ruby / [Sinatra](http://sinatrarb.com/)
 
