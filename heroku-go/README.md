@@ -1,5 +1,8 @@
 # Heroku Go
 
+See example deployed at
+<https://webstack-go.herokuapp.com/>.
+
 ## Setup
 
 ```
@@ -23,6 +26,8 @@ heroku addons:create heroku-postgresql:hobby-dev -a <app>
 
 ## Editorial
 
+* I always forget to put the magic comment `// +heroku goVersion 1.18`
+  at the top of `go.mod`. Why isn't `go 1.18` later in the file enough?
 * From `git push` to build finishing and process restarting is ~10s.
 * Databases are backed up continuously.
 * HA databases available.

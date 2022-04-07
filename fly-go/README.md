@@ -1,10 +1,24 @@
 # Fly Go
 
+See example deployed at
+<https://webstack-go.fly.dev/>.
+
 ## Setup
 
-Install Docker from <https://www.docker.com/get-started/> (~1.5GB for M1 chip).
+Develop:
 
 ```
+go run api.go
+```
+
+Install Docker from <https://www.docker.com/get-started/>
+(~1.5GB for M1 chip).
+
+Set up Fly:
+
+```
+brew install flyctl
+flyctl auth login
 flyctl launch
 ```
 

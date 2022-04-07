@@ -26,5 +26,5 @@ Hosting platforms:
 * [Vercel](https://vercel.com)
 
 The dashboard at <https://webstack.checklyhq.com/>
-shows real-time latencies from
+shows real-time request data from
 N. California, Montreal, Ireland, Stockholm, and Sydney.
