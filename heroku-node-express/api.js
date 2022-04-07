@@ -1,17 +1,20 @@
 const express = require("express");
 const { Client } = require("pg");
 
+const devDB = "postgres:///webstack_dev";
+
 // env
-const conn = process.env.DATABASE_URL || "postgres:///webstack_dev";
+const conn = process.env.DATABASE_URL || devDB;
 const port = process.env.PORT || 3000;
 
 // db
 const client = new Client({
   connectionString: conn,
+  ssl: conn !== devDB,
 });
 client.connect();
 
-// app
+// routes
 const app = express();
 
 app.get("/", (_, resp) => {

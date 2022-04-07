@@ -11,7 +11,7 @@ const client = new Client({
 });
 client.connect();
 
-// app
+// routes
 const app = express();
 
 app.get("/", (_, resp) => {

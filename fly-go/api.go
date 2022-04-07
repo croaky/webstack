@@ -27,14 +27,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// http
+	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		db.Query("SELECT 1")
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintf(w, "{status:\"ok\"}")
 	})
 
-	// serve
+	// listen
 	log.Println("Listening at http://localhost:" + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
