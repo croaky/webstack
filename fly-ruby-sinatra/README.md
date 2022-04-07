@@ -1,4 +1,4 @@
-# Fly Ruby Sinatra
+# Fly Ruby
 
 See example deployed at
 <https://webstack-ruby-sinatra.fly.dev/>.

@@ -1,4 +1,4 @@
-# Railway Node Express
+# Railway Node
 
 See example deployed at
 <https://webstack-node-express.up.railway.app/>.

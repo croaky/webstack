@@ -1,4 +1,4 @@
-# Railway Ruby Sinatra
+# Railway Ruby
 
 See example deployed at
 <https://webstack-ruby-sinatra.up.railway.app/>.

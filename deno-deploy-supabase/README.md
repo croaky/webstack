@@ -1,4 +1,4 @@
-# Deno Deploy Postgres
+# Deno Deploy
 
 See example deployed at
 <https://webstack-supabase.deno.dev/>.

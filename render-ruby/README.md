@@ -1,4 +1,4 @@
-# Render Ruby Sinatra
+# Render Ruby
 
 See example deployed at
 <https://ruby-sinatra.onrender.com>.
@@ -11,8 +11,6 @@ createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb
 ```
 
-Set up Render:
-
 Go to <https://dashboard.render.com/new/database>
 Name the database "webstack".
 Set "Plans" to "Free".
@@ -23,8 +21,8 @@ Select this repo.
 Select `main` branch.
 Name the service.
 Select "Ruby" environment.
-Set "Build command" to `cd render-ruby-sinatra && bundle install`.
-Set "Start command" to `cd render-ruby-sinatra && bundle exec ruby api.rb`.
+Set "Build command" to `cd render-ruby && bundle install`.
+Set "Start command" to `cd render-ruby && bundle exec ruby api.rb`.
 Set "Plans" to "Free".
 Click "Advanced".
 Click "Add Environment Variable".
