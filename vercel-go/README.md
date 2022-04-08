@@ -13,7 +13,17 @@ Click "New project".
 Select this Git repo.
 Select `vercel-go` as root directory.
 Click "Deploy".
-Go to your app in a web browser at the `/api` path.
+Test your app in a web browser at the `/api` path.
+
+Go to <https://app.supabase.io/> to create a new Postgres database.
+Click the database icon in sidebar, then "Connection Pooling".
+Copy "Connection string".
+
+Back in Vercel:
+
+Click "Settings" tab.
+Click "Environment Variables"
+Create a new env var `DATABASE_URL` and paste value from Supabase.
 
 ## Editorial
 
