@@ -1,7 +1,22 @@
+require "connection_pool"
 require "pg"
 require "sinatra"
 
-db = PG.connect(ENV.fetch("DATABASE_URL"))
+class DB
+  def initialize
+    @pool = ConnectionPool.new(size: 5, timeout: 5) {
+      PG.connect(ENV.fetch("DATABASE_URL"))
+    }
+  end
+
+  def exec(sql)
+    @pool.with do |conn|
+      conn.exec(sql)
+    end
+  end
+end
+
+db = DB.new
 
 get "/" do
   db.exec "SELECT 1"
