@@ -1,8 +1,5 @@
 # Heroku Crystal
 
-See example deployed at
-<https://webstack-crystal-kemal.herokuapp.com/>.
-
 ## Setup
 
 ```

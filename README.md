@@ -8,7 +8,6 @@ and respond with JSON `{ "status": "ok" }`.
 
 Runtimes:
 
-* Crystal ([Kemal](https://kemalcr.com/))
 * Deno ([stdlib](https://deno.land/std))
 * Go ([stdlib](https://pkg.go.dev/std))
 * Node ([Express](https://expressjs.com/))
