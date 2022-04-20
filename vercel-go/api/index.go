@@ -11,12 +11,28 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	dbUrl := os.Getenv("DATABASE_URL")
+	w.Header().Set("Content-Type", "application/json")
+
+	dbUrl, ok := os.LookupEnv("DATABASE_URL")
+	if !ok {
+		log.Fatal("DATABASE_URL not set")
+		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		return
+	}
+
 	db, err := sql.Open("postgres", dbUrl)
 	if err != nil {
 		log.Fatal(err)
+		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		return
 	}
-	db.Query("SELECT 1")
-	w.Header().Set("Content-Type", "application/json")
+
+	_, err = db.Query("SELECT 1")
+	if err != nil {
+		log.Fatal(err)
+		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		return
+	}
+
 	fmt.Fprintf(w, "{status:\"ok\"}")
 }
