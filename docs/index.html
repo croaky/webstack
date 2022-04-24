@@ -7,13 +7,24 @@
     @supports (font-variation-settings: normal) {
       html { font-family: 'Inter var', sans-serif; }
     }
-    main {
+    body {
+      padding: 32px;
+    }
+    main,
+    section {
       padding: 10px 32px;
     }
     iframe {
       border: none;
-      height: 1000px;
       width: 100%;
+    }
+    .dash-main {
+      height: 930px;
+    }
+    p,
+    li {
+      line-height: 1.5em;
+      max-width: 700px;
     }
   </style>
 </head>
@@ -21,33 +32,145 @@
   <main>
     <h1>webstack</h1>
     <p>
-      A project to prototype web stacks.
+      A project to prototype web stacks
       <a href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
-    </p>
-    <p>
-      Hosts:
-      <a href="https://deno.com/deploy">Deno Deploy</a>,
-      <a href="https://fly.io">Fly.io</a>,
-      <a href="https://heroku.com">Heroku</a>,
-      <a href="https://railway.app">Railway</a>,
-      <a href="https://render.com">Render</a>,
-      and <a href="https://vercel.com">Vercel</a>.
-    </p>
-    <p>
-      Runtimes:
-      Deno (<a href="https://deno.land/std">stdlib</a>),
-      Go (<a href="https://pkg.go.dev/std">stdlib</a>),
-      Node (<a href="https://expressjs.com/">Express</a>),
-      and Ruby (<a href="http://sinatrarb.com/">Sinatra</a>).
-    </p>
-    <p>
-      Each stack has one API endpoint that executes a
-      <code>SELECT 1</code> to a SQL database
-      and responds with JSON <code>{ "status": "ok" }</code>.
     </p>
     <p>
       API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
     </p>
   </main>
-  <iframe src="https://webstack.checklyhq.com/" />
+
+  <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
+
+  <section>
+    <h2>overview</h2>
+    <p>
+      When we as developers want to provide a JSON API on the web,
+      we choose from options for hosting providers, runtimes, and SQL databases.
+      This project is <a href="https://dancroak.com">my</a> attempt
+      to prototype those options and share what I learn.
+    </p>
+    <p>
+      Hosting providers:
+    </p>
+    <ul>
+      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
+      <li><a href="https://fly.io">Fly.io</a></li>
+      <li><a href="https://heroku.com">Heroku</a></li>
+      <li><a href="https://railway.app">Railway</a></li>
+      <li><a href="https://render.com">Render</a></li>
+      <li><a href="https://vercel.com">Vercel</a></li>
+    </ul>
+    <p>
+      Runtimes (frameworks):
+    </p>
+    <ul>
+      <li>Deno (<a href="https://deno.land/std">stdlib</a>)</li>
+      <li>Go (<a href="https://pkg.go.dev/std">stdlib</a>)</li>
+      <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
+      <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
+    </ul>
+    <p>
+      SQL databases:
+    </p>
+    <ul>
+      <li><a href="https://www.postgresql.org/">Postgres</a></li>
+      <li><a href="https://supabase.com/">Supabase</a></li>
+    </ul>
+    <p>
+      Each stack has a healthcheck-style API endpoint that executes a
+      <code>SELECT 1</code> to a SQL database
+      and responds with JSON <code>{ "status": "ok" }</code>.
+    </p>
+  </section>
+
+  <section>
+    <h2>heroku + ruby + postgres</h2>
+    <p>
+      From ~2009-2017, my most frequent stack was Heroku + Ruby + Postgres:
+    </p>
+    <ul>
+      <li>
+        Ruby on Rails app in a GitHub repository
+      </li>
+      <li>
+        GitHub pull requests w/ Continuous Integration (CI)
+      </li>
+      <li>
+        Merge into <code>main</code> branch auto-deploys to Heroku staging environment
+      </li>
+      <li>
+        Manually promote staging to production environment in a
+        <a href="https://devcenter.heroku.com/articles/pipelines">pipeline</a>
+      <li>
+        Postgres database configured with a
+        <a
+          href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">follower</a>
+      </li>
+    </ul>
+    <p>
+      IMO, this stack was well-suited for many SaaS companies and workflow apps.
+    </p>
+  </section>
+
+  <section>
+    <h2>ruby</h2>
+    <p>
+      Relative to other options in recent years,
+      Ruby has not been making developers happy.
+      See <a href="https://insights.stackoverflow.com/survey">Stack Overflow's
+      annual developer survey</a> of "most loved":
+    </p>
+    <ul>
+      <li>87% Rust</li>
+      <li>73% TypeScript</li>
+      <li>68% Python</li>
+      <li>64% Swift</li>
+      <li>63% Go</li>
+      <li>62% SQL</li>
+      <li>62% Kotlin</li>
+      <li>62% JavaScript</li>
+      <li>60% HTML/CSS</li>
+      <li>56% Bash</li>
+      <li>53% Ruby</li>
+      <li>49% C++</li>
+      <li>47% Java</li>
+      <li>40% C</li>
+    </ul>
+    <p>
+      My favorite parts of Ruby and Rails are <strong>expressive DSLs</strong>
+      like:
+    </p>
+    <ul>
+      <li>
+        Sinatra
+      </li>
+      <li>
+        <a
+          href="https://guides.rubyonrails.org/active_record_migrations.html">ActiveRecord
+          migrations</a>
+      </li>
+      <li>
+        <a href="https://rspec.info/">RSpec</a>
+      </li>
+      <li>
+        <a href="https://github.com/thoughtbot/factory_bot">FactoryBot</a>
+      </li>
+    </ul>
+    <p>
+      My least favorite parts are:
+    </p>
+    <ul>
+      <li>
+        <strong>Performance</strong>. In the days of Twitter's "fail whale",
+        a common refrain was "Rails can't scale". The counter-arguments were
+        that hardware was always improving and other products like GitHub,
+        Shopify, Airbnb, and Stripe were able to stay with Ruby.
+      </li>
+      <li>
+        <strong>Magic</strong>. The combination of Ruby's code loading semantics
+        and Rails' conventions can make it difficult to understand code flow.
+      </li>
+    </ul>
+  </section>
 </body>
