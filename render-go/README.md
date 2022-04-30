@@ -14,8 +14,7 @@ Postgres:
 * Go to <https://dashboard.render.com/new/database>
 * Create a new database.
 * Select a "Plan".
-* Once the database is available,
-  copy "Internal Connection String".
+* Once the database is available, copy "Internal Connection String".
 
 Web service:
 
