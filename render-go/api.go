@@ -1,13 +1,13 @@
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	_ "github.com/lib/pq"
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func main() {
@@ -22,14 +22,15 @@ func main() {
 	}
 
 	// db
-	db, err := sql.Open("postgres", dbUrl)
+	dbpool, err := pgxpool.Connect(context.Background(), os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer dbpool.Close()
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		db.Query("SELECT 1")
+		dbpool.Query(context.Background(), "SELECT 1")
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintf(w, "{status:\"ok\"}")
 	})
