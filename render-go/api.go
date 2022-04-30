@@ -30,7 +30,7 @@ func main() {
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		dbpool.Query(context.Background(), "SELECT 1")
+		dbpool.QueryRow(context.Background(), "SELECT 1")
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintf(w, "{status:\"ok\"}")
 	})
