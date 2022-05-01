@@ -1,0 +1,2 @@
+APP_ENV=dev
+DATABASE_URL=postgres:///webstack_dev?sslmode=disable

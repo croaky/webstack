@@ -6,3 +6,8 @@ gem "connection_pool"
 gem "pg"
 gem "puma"
 gem "sinatra"
+
+group :test do
+  gem "rack-test"
+  gem "rspec"
+end
