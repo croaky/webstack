@@ -49,7 +49,11 @@ func main() {
 	r.Use(gin.Recovery())
 
 	r.GET("/", func(c *gin.Context) {
-		dbpool.QueryRow(ctx, "SELECT 1")
+		var result int
+		err = dbpool.QueryRow(ctx, "SELECT 1").Scan(&result)
+		if err != nil {
+			fmt.Println(err)
+		}
 		c.JSON(200, gin.H{
 			"status": "ok",
 		})
