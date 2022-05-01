@@ -22,7 +22,7 @@
       height: 580px;
     }
     .dash-serverless {
-      height: 300px;
+      height: 310px;
     }
     .dash-ruby {
       height: 450px;
@@ -51,13 +51,19 @@
   <section>
     <h2>overview</h2>
     <p>
-      When providing a JSON API, we developers
-      choose a hosting provider, runtime, and SQL database.
       This project is <a href="https://dancroak.com">my</a> attempt
-      to prototype options for each.
+      to prototype different web stacks. Each stack serves
+      a healthcheck-style HTTP API endpoint that executes a
+      <code>SELECT 1</code> to a SQL database
+      and responds with JSON <code>{ "status": "ok" }</code>.
+      Each stack hosts on a
+      <a
+          href="https://www.cloudflare.com/learning/serverless/glossary/platform-as-a-service-paas/">PaaS</a>
+      and is built with a lightweight router, database connection pool, and
+      database driver (no ORM).
     </p>
     <p>
-      Right now, I'm focused on these hosting providers:
+      Right now, I'm most focused on these hosting providers:
     </p>
     <ul>
       <li><a href="https://fly.io">Fly.io</a></li>
@@ -65,10 +71,10 @@
       <li><a href="https://render.com">Render</a></li>
     </ul>
     <p>
-      and these runtimes (frameworks):
+      and these runtimes (w/ routers):
     </p>
     <ul>
-      <li>Go (<a href="https://pkg.go.dev/std">stdlib</a>)</li>
+      <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
       <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
       <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
     </ul>
@@ -77,12 +83,8 @@
     </p>
     <ul>
       <li><a href="https://www.postgresql.org/">Postgres</a></li>
+      <li><a href="https://planetscale.com/">Planetscale</a></li>
     </ul>
-    <p>
-      Each stack has a healthcheck-style API endpoint that executes a
-      <code>SELECT 1</code> to a SQL database
-      and responds with JSON <code>{ "status": "ok" }</code>.
-    </p>
   </section>
 
   <section>
@@ -111,8 +113,8 @@
   <section>
     <h2>heroku + ruby + postgres</h2>
     <p>
-      From 2009-2017 and 2020-2022, my go-to stack was Heroku + Ruby +
-      Postgres.
+      From 2009-2017 and 2020-2022, my stack was Heroku + Ruby + Postgres.
+      That stack strongly informs my priors. I'm wondering: what's better?
     </p>
   </section>
   <section>
@@ -122,10 +124,11 @@
     </p>
     <ul>
       <li>
-        Version code in a GitHub repository
+        Code versioned in a GitHub repo
       </li>
       <li>
-        Open GitHub pull requests w/ Continuous Integration (CI)
+        Open GitHub pull requests w/
+        <a href="https://www.thoughtworks.com/continuous-integration">CI</a>
       </li>
       <li>
         Merge into <code>main</code> branch to auto-deploy to Heroku staging
@@ -167,14 +170,15 @@
   <section>
     <h2>ruby</h2>
     <p>
-      Ruby makes "developer happiness" a core goal but is not recently scoring
-      well on that metric. See "most loved" in
-      <a href="https://insights.stackoverflow.com/survey">Stack Overflow's
+      Ruby makes "developer happiness" a core goal but is not scoring well by
+      that metric. See "most loved" in
+      <a href="https://insights.stackoverflow.com/survey/2021#most-loved-dreaded-and-wanted-language-love-dread">Stack Overflow's
          annual developer survey</a>:
     </p>
     <ul>
       <li>87% Rust</li>
       <li>73% TypeScript</li>
+      <li>72% Elixir</li>
       <li>68% Python</li>
       <li>64% Swift</li>
       <li>63% Go</li>
@@ -182,6 +186,7 @@
       <li>62% Kotlin</li>
       <li>62% JavaScript</li>
       <li>60% HTML/CSS</li>
+      <li>59% Crystal</li>
       <li>56% Bash</li>
       <li>53% Ruby</li>
       <li>49% C++</li>
@@ -195,9 +200,8 @@
       in other stacks like Go.
     </p>
     <p>
-      I hope to use this webstack project as
-      an opportunity to test <a href="https://sorbet.org/">Sorbet</a>.
-      I suspect I'll come to a similar conclusion as
+      As part of this project, I hope to test <a href="https://sorbet.org/">Sorbet</a>.
+      I suspect I'll feel similarly as
       <a
         href="https://brandur.org/fragments/large-scale-ruby-refactoring">Brandur
         here</a>.
