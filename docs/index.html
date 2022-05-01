@@ -19,7 +19,13 @@
       width: 100%;
     }
     .dash-main {
-      height: 930px;
+      height: 580px;
+    }
+    .dash-serverless {
+      height: 300px;
+    }
+    .dash-ruby {
+      height: 450px;
     }
     p,
     li {
@@ -45,37 +51,32 @@
   <section>
     <h2>overview</h2>
     <p>
-      When we developers want to provide a JSON API,
-      we choose from options for hosting providers, runtimes, and SQL databases.
+      When providing a JSON API, we developers
+      choose a hosting provider, runtime, and SQL database.
       This project is <a href="https://dancroak.com">my</a> attempt
-      to prototype those options and share what I learn.
+      to prototype options for each.
     </p>
     <p>
-      Hosting providers:
+      Right now, I'm focused on these hosting providers:
     </p>
     <ul>
-      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
       <li><a href="https://fly.io">Fly.io</a></li>
-      <li><a href="https://heroku.com">Heroku</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
-      <li><a href="https://vercel.com">Vercel</a></li>
     </ul>
     <p>
-      Runtimes (frameworks):
+      and these runtimes (frameworks):
     </p>
     <ul>
-      <li>Deno (<a href="https://deno.land/std">stdlib</a>)</li>
       <li>Go (<a href="https://pkg.go.dev/std">stdlib</a>)</li>
       <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
       <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
     </ul>
     <p>
-      SQL databases:
+      with these SQL databases:
     </p>
     <ul>
       <li><a href="https://www.postgresql.org/">Postgres</a></li>
-      <li><a href="https://supabase.com/">Supabase</a></li>
     </ul>
     <p>
       Each stack has a healthcheck-style API endpoint that executes a
@@ -85,17 +86,39 @@
   </section>
 
   <section>
+    <h2>serverless</h2>
+    <p>
+      I tested two serverless options:
+      <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
+      and
+      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel's
+        serverless Go functions</a>.
+      Both used
+      <a href="https://supabase.com/">Supabase</a>
+      as the backend database.
+    </p>
+    <p>
+      I'm still intrigued by the future of serverless.
+      But, serverful options are a little more "standard";
+      the same code is likely to run on Fly, Railway, Render, or Heroku
+      without many tweaks.
+      The latency is also higher for the serverless options:
+    </p>
+  </section>
+
+  <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
+
+  <section>
     <h2>heroku + ruby + postgres</h2>
     <p>
-      From 2009-2017 and 2020-2022, my go-to stack has been Heroku + Ruby +
-      Postgres. I'm happy with it as a baseline but there's room for
-      improvement.
+      From 2009-2017 and 2020-2022, my go-to stack was Heroku + Ruby +
+      Postgres.
     </p>
   </section>
   <section>
     <h2>heroku</h2>
     <p>
-      For a production app, the key points of my Heroku setup are:
+      My Heroku setup was generally:
     </p>
     <ul>
       <li>
@@ -105,7 +128,8 @@
         Open GitHub pull requests w/ Continuous Integration (CI)
       </li>
       <li>
-        Merge into <code>main</code> branch to auto-deploy to Heroku staging environment
+        Merge into <code>main</code> branch to auto-deploy to Heroku staging
+        environment
       </li>
       <li>
         Promote staging manually to production environment in a
@@ -116,37 +140,37 @@
           href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">follower</a>
       </li>
     </ul>
+    <p>
+      Heroku's GitHub integration broke April 2022 in
+      <a href="https://status.heroku.com/incidents/2413">incident 2413</a> and
+      has not been restored.
+      Heroku also lacks overdue features that Render now supports:
+    </p>
+    <ul>
+      <li>
+        HTTP/2 support
+      </li>
+      <li>
+        <a href="https://render.com/docs/databases">IP access control on
+          Postgres databases</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/ddos-protection">DDoS
+          protection</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
+      </li>
+    </ul>
   </section>
 
   <section>
     <h2>ruby</h2>
     <p>
-      My favorite parts of Ruby are:
-    </p>
-    <ul>
-      <li>
-        <strong>Expressive DSLs</strong> like Sinatra, RSpec, FactoryBot, and
-        ActiveRecords migrations.
-      </li>
-      <li>
-        <strong>Iteration</strong> of arrays and hashes with the
-        <a href="https://ruby-doc.org/core-3.1.1/Enumerable.html">Enumerable</a>
-        module.
-      </li>
-    </ul>
-    <p>
-      My least favorite parts are:
-    </p>
-    <ul>
-      <li>
-        <strong>Code navigation</strong>. I find it easier to read, debug, and
-        navigate Go and TypeScript projects.
-      </li>
-    </ul>
-    <p>
-      Relative to other options, Ruby has not been making developers happy. See
-      "most loved" in <a href="https://insights.stackoverflow.com/survey">Stack
-      Overflow's annual developer survey</a>:
+      Ruby makes "developer happiness" a core goal but is not recently scoring
+      well on that metric. See "most loved" in
+      <a href="https://insights.stackoverflow.com/survey">Stack Overflow's
+         annual developer survey</a>:
     </p>
     <ul>
       <li>87% Rust</li>
@@ -164,5 +188,21 @@
       <li>47% Java</li>
       <li>40% C</li>
     </ul>
+    <p>
+      If the survey respondents are like me,
+      they enjoy writing small Ruby programs but in larger programs,
+      find it easier to understand and change code in
+      in other stacks like Go.
+    </p>
+    <p>
+      I hope to use this webstack project as
+      an opportunity to test <a href="https://sorbet.org/">Sorbet</a>.
+      I suspect I'll come to a similar conclusion as
+      <a
+        href="https://brandur.org/fragments/large-scale-ruby-refactoring">Brandur
+        here</a>.
+    </p>
   </section>
+
+  <iframe class="dash-ruby" src="https://webstack-ruby.checklyhq.com/"></iframe>
 </body>
