@@ -10,56 +10,70 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
+func env(key string, fallback string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		val = fallback
+	}
+	return val
+}
+
+type Server struct {
+	db *pgxpool.Pool
+	rt *gin.Engine
+}
+
+func NewServer(db *pgxpool.Pool) *Server {
+	gin.SetMode(gin.ReleaseMode)
+	rt := gin.New()
+
+	rt.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
+		return fmt.Sprintf("%s %d %s %s\n",
+			fmt.Sprintf("% 4dms", param.Latency.Milliseconds()),
+			param.StatusCode,
+			param.Method,
+			param.Path,
+			// TODO: req_id, git_sha
+		)
+	}))
+	rt.Use(gin.Recovery())
+
+	return &Server{
+		db: db,
+		rt: rt,
+	}
+}
+
+func (s *Server) health() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var result int
+		err := s.db.QueryRow(context.Background(), "SELECT 1").Scan(&result)
+		if err != nil {
+			fmt.Println(err)
+			c.JSON(500, gin.H{"status": "err"})
+			return
+		}
+
+		c.JSON(200, gin.H{"status": "ok"})
+	}
+}
+
 func main() {
 	// env
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-	dbUrl := os.Getenv("DATABASE_URL")
-	if dbUrl == "" {
-		dbUrl = "postgres:///webstack_dev"
-	}
-	ctx := context.Background()
+	port := env("PORT", "8080")
+	dbUrl := env("DATABASE_URL", "postgres:///webstack_dev")
 
 	// db
-	dbpool, err := pgxpool.Connect(ctx, os.Getenv("DATABASE_URL"))
+	db, err := pgxpool.Connect(context.Background(), dbUrl)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer dbpool.Close()
+	defer db.Close()
 
-	// init router
-	gin.SetMode(gin.ReleaseMode)
-	r := gin.New()
+	// server
+	s := NewServer(db)
+	s.rt.GET("/", s.health())
 
-	// middleware
-	r.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
-		return fmt.Sprintf("method=%s path=%s status=%d duration=%s error=%s\n",
-			param.Method,
-			param.Path,
-			param.StatusCode,
-			fmt.Sprintf("%dms", param.Latency.Milliseconds()),
-			param.ErrorMessage,
-			// TODO: req_id=, req_ip=, release=, git_head=, user_id=, err_id=,
-			// rate_limit_enforced=false, rate_limit=100=, rate_limit_remaining=99
-			// https://brandur.org/canonical-log-lines
-		)
-	}))
-	r.Use(gin.Recovery())
-
-	r.GET("/", func(c *gin.Context) {
-		var result int
-		err = dbpool.QueryRow(ctx, "SELECT 1").Scan(&result)
-		if err != nil {
-			fmt.Println(err)
-		}
-		c.JSON(200, gin.H{
-			"status": "ok",
-		})
-	})
-
-	// serve
 	log.Println("Listening at http://localhost:" + port)
-	r.Run(":" + port)
+	s.rt.Run(":" + port)
 }
