@@ -23,7 +23,7 @@ type Server struct {
 	rt *gin.Engine
 }
 
-func NewServer(db *pgxpool.Pool) *Server {
+func NewServer(ctx context.Context, db *pgxpool.Pool) *Server {
 	gin.SetMode(gin.ReleaseMode)
 	rt := gin.New()
 
@@ -38,41 +38,34 @@ func NewServer(db *pgxpool.Pool) *Server {
 	}))
 	rt.Use(gin.Recovery())
 
+	rt.GET("/", func(c *gin.Context) {
+		var col int
+		db.QueryRow(ctx, "SELECT 1").Scan(&col)
+		c.JSON(200, gin.H{"status": "ok"})
+	})
+
 	return &Server{
 		db: db,
 		rt: rt,
 	}
 }
 
-func (s *Server) health() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var result int
-		err := s.db.QueryRow(context.Background(), "SELECT 1").Scan(&result)
-		if err != nil {
-			fmt.Println(err)
-			c.JSON(500, gin.H{"status": "err"})
-			return
-		}
-
-		c.JSON(200, gin.H{"status": "ok"})
-	}
-}
-
 func main() {
+	ctx := context.Background()
+
 	// env
 	port := env("PORT", "8080")
 	dbUrl := env("DATABASE_URL", "postgres:///webstack_dev")
 
 	// db
-	db, err := pgxpool.Connect(context.Background(), dbUrl)
+	db, err := pgxpool.Connect(ctx, dbUrl)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
 	// server
-	s := NewServer(db)
-	s.rt.GET("/", s.health())
+	s := NewServer(ctx, db)
 
 	log.Println("Listening at http://localhost:" + port)
 	s.rt.Run(":" + port)
