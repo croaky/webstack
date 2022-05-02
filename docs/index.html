@@ -63,17 +63,22 @@
       database driver (no ORM).
     </p>
     <p>
-      Right now, I'm most focused on these hosting providers:
+      Right now, I'm playing with these hosting providers:
     </p>
     <ul>
+      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
+      <li><a href="https://encore.dev/">Encore</a></li>
       <li><a href="https://fly.io">Fly.io</a></li>
+      <li><a href="https://netlify.com">Netlify</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
+      <li><a href="https://vercel.com">Vercel</a></li>
     </ul>
     <p>
       and these runtimes (w/ routers):
     </p>
     <ul>
+      <li>Deno (<a href="https://oakserver.github.io/oak/">Oak</a>)</li>
       <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
       <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
       <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
@@ -90,7 +95,15 @@
   <section>
     <h2>serverless</h2>
     <p>
-      I tested two serverless options:
+      Three of the hosting providers are "serverless":
+    </p>
+    <ul>
+      <li>Deno Deploy</li>
+      <li>Netlify</li>
+      <li>Vercel</li>
+    </ul>
+    <p>
+      So far, I've tested
       <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
       and
       <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel's
@@ -100,11 +113,23 @@
       as the backend database.
     </p>
     <p>
-      I'm still intrigued by the future of serverless.
-      But, serverful options are a little more "standard";
-      the same code is likely to run on Fly, Railway, Render, or Heroku
-      without many tweaks.
-      The latency is also higher for the serverless options:
+      Serverless feels like it could be the future;
+      it would be nice to manage fewer things.
+      And, starting my career in the early 2000s reading books like
+      <a
+          href="https://www.amazon.com/Designing-Web-Standards-Jeffrey-Zeldman/dp/0321616952">Designing
+      with Web Standards</a>,
+      I especially like the web standard-focus of Deno.
+    </p>
+    <p>
+      But, the serverful options feel a little more "standard" due to their
+      maturity; the same Ruby, Node, or Go code is likely to run on Fly,
+      Railway, Render, or Heroku without many tweaks.
+    </p>
+    <p>
+      The latency is also higher for the serverless options, I'm guessing due to
+      paying a TLS handshake cost, but would love to instrument and see how to
+      bring these latencies down:
     </p>
   </section>
 
@@ -209,4 +234,8 @@
   </section>
 
   <iframe class="dash-ruby" src="https://webstack-ruby.checklyhq.com/"></iframe>
+
+  <section>
+    <h2>to be continued...</h2>
+  </section>
 </body>
