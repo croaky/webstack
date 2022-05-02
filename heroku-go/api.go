@@ -1,40 +1,30 @@
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
-	"log"
-	"net/http"
 	"os"
 
-	_ "github.com/lib/pq"
+	"github.com/jackc/pgx/v4/pgxpool"
+
+	"server/api"
+	"server/env"
 )
 
 func main() {
 	// env
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-	dbUrl := os.Getenv("DATABASE_URL")
-	if dbUrl == "" {
-		dbUrl = "postgres:///webstack_dev"
-	}
+	dbURL := env.String("DATABASE_URL", "postgres:///webstack_dev")
+	port := env.String("PORT", "8080")
 
 	// db
-	db, err := sql.Open("postgres", dbUrl)
+	db, err := pgxpool.Connect(context.Background(), dbURL)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
 	}
-
-	// routes
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		db.Query("SELECT 1")
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, "{status:\"ok\"}")
-	})
+	defer db.Close()
 
 	// serve
-	log.Println("Listening at http://localhost:" + port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	server := api.NewServer(db)
+	server.Serve(port)
 }
