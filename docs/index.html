@@ -47,6 +47,13 @@
       line-height: 1.5em;
       max-width: 700px;
     }
+    pre,
+    code {
+      font-size: 1.15em;
+      line-height: 1.25em;
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 <body>
@@ -91,8 +98,36 @@
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{ "status": "ok" }</code>.
       Each stack is built with a lightweight router, database connection pool,
-      and SQL database driver (no ORM).
+      and SQL database driver (no ORM). For example, in Ruby:
     </p>
+    <pre>
+      <code>
+require "connection_pool"
+require "pg"
+require "sinatra"
+
+class DB
+  def initialize
+    @pool = ConnectionPool.new(size: 5, timeout: 5) {
+      PG.connect(ENV.fetch("DATABASE_URL"))
+    }
+  end
+
+  def exec(sql)
+    @pool.with do |conn|
+      conn.exec(sql)
+    end
+  end
+end
+
+db = DB.new
+
+get "/" do
+  db.exec "SELECT 1"
+  content_type :json
+  {status: "ok"}.to_json
+end</code>
+    </pre>
     <p>
       See the code for all stacks in
       <a
