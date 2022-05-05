@@ -36,11 +36,11 @@
     .dash-main {
       height: 580px;
     }
-    .dash-serverless {
-      height: 310px;
-    }
     .dash-ruby {
       height: 450px;
+    }
+    .dash-serverless {
+      height: 310px;
     }
     p,
     li {
@@ -52,9 +52,9 @@
 <body>
   <nav>
     <a href="#overview">overview</a>
+    <a href="#example">example</a>
     <a href="#heroku">heroku</a>
     <a href="#serverless">serverless</a>
-    <a href="#ruby">ruby</a>
   </nav>
 
   <main id="overview">
@@ -64,42 +64,18 @@
       <a href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
     </p>
     <p>
-      Each stack serves a healthcheck-style HTTP API endpoint that executes a
-      <code>SELECT 1</code> to a SQL database
-      and responds with JSON <code>{ "status": "ok" }</code>.
-      Each stack hosts on a
-      <a
-          href="https://www.cloudflare.com/learning/serverless/glossary/platform-as-a-service-paas/">PaaS</a>
-      and is built with a lightweight router, database connection pool, and
-      database driver (no ORM).
-    </p>
-    <p>
-      I want to try these hosting providers:
+      I'd eventually like to go deeper on different runtimes (e.g. Deno)
+      and serverless architectures but
+      <a href="https://status.heroku.com/incidents/2413">Heroku incident
+        2413</a> is creating urgency to focus on a better backend hosting
+      provider:
     </p>
     <ul>
       <li><a href="https://heroku.com">Railway</a></li>
-      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
-      <li><a href="https://encore.dev/">Encore</a> (TODO)</li>
+      <li><a href="https://encore.dev/">Encore</a></li>
       <li><a href="https://fly.io">Fly.io</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
-      <li><a href="https://vercel.com">Vercel</a></li>
-    </ul>
-    <p>
-      and these runtimes (w/ routers):
-    </p>
-    <ul>
-      <li>Deno (stdlib)</li>
-      <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
-      <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
-      <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
-    </ul>
-    <p>
-      with these SQL databases:
-    </p>
-    <ul>
-      <li><a href="https://www.postgresql.org/">Postgres</a></li>
-      <li><a href="https://planetscale.com/">Planetscale</a> (TODO)</li>
     </ul>
     <p>
       API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
@@ -108,59 +84,34 @@
 
   <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
 
-  <section id="heroku">
-    <h2>heroku</h2>
+  <section id="example">
+    <h2>example</h2>
     <p>
-      From 2009-2017 and 2020-2022, my stack was Heroku + Ruby + Postgres.
-      Generally:
+      Each stack serves a healthcheck-style HTTP API endpoint that executes a
+      <code>SELECT 1</code> to a SQL database
+      and responds with JSON <code>{ "status": "ok" }</code>.
+      Each stack is built with a lightweight router, database connection pool,
+      and SQL database driver (no ORM).
+    </p>
+    <p>
+      See the code for all stacks in
+      <a
+        href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>.
     </p>
     <ul>
-      <li>
-        Code versioned in a GitHub repo
-      </li>
-      <li>
-        Open GitHub pull requests w/
-        <a href="https://www.thoughtworks.com/continuous-integration">CI</a>
-      </li>
-      <li>
-        Merge into <code>main</code> branch to auto-deploy to Heroku staging
-        environment
-      </li>
-      <li>
-        Promote staging manually to production environment in a
-        <a href="https://devcenter.heroku.com/articles/pipelines">pipeline</a>
-      <li>
-        Configure Postgres database with a
-        <a
-          href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">follower</a>
-      </li>
+      <li>Crystal (<a href="https://kemalcr.com/">Kemal</a>)</li>
+      <li>Deno (stdlib)</li>
+      <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
+      <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
+      <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
     </ul>
     <p>
-      Heroku's GitHub integration broke April 2022 in
-      <a href="https://status.heroku.com/incidents/2413">incident 2413</a> and
-      has not been restored.
-      Heroku also lacks overdue features that Render now supports:
-    </p>
-    <ul>
-      <li>
-        HTTP/2 support
-      </li>
-      <li>
-        <a href="https://render.com/docs/databases">IP access control on
-          Postgres databases</a>
-      </li>
-      <li>
-        <a href="https://render.com/docs/ddos-protection">DDoS
-          protection</a>
-      </li>
-      <li>
-        <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
-      </li>
+      For now, I'm only using
+      <a href="https://www.postgresql.org/">Postgres</a>
+      but would like to add
+      <a href="https://planetscale.com/">Planetscale</a> stacks in the future.
     </ul>
-  </section>
-
-  <section id="ruby">
-    <h2>ruby</h2>
+    <!--
     <p>
       Ruby makes "developer happiness" a core goal but is not scoring well by
       that metric. See "most loved" in
@@ -198,9 +149,60 @@
         href="https://brandur.org/fragments/large-scale-ruby-refactoring">Brandur
         here</a>.
     </p>
+    -->
   </section>
 
   <iframe class="dash-ruby" src="https://webstack-ruby.checklyhq.com/"></iframe>
+
+  <section id="heroku">
+    <h2>heroku</h2>
+    <p>
+      From 2009-2022, my stack most often included Heroku + Postgres:
+    </p>
+    <ul>
+      <li>
+        Version code in a GitHub repo
+      </li>
+      <li>
+        Open GitHub pull requests w/
+        <a href="https://www.thoughtworks.com/continuous-integration">CI</a>
+      </li>
+      <li>
+        Merge into <code>main</code> branch to auto-deploy to staging
+        environment
+      </li>
+      <li>
+        Promote staging manually to production environment in a
+        <a href="https://devcenter.heroku.com/articles/pipelines">pipeline</a>
+      <li>
+        Configure production database with a
+        <a
+          href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">follower</a>
+      </li>
+    </ul>
+    <p>
+      Heroku's GitHub integration broke April 2022 in
+      <a href="https://status.heroku.com/incidents/2413">incident 2413</a> and
+      has not been restored.
+      Heroku also lacks overdue features that e.g. Render now supports:
+    </p>
+    <ul>
+      <li>
+        HTTP/2 support
+      </li>
+      <li>
+        <a href="https://render.com/docs/databases">IP access control on
+          Postgres databases</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/ddos-protection">DDoS
+          protection</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
+      </li>
+    </ul>
+  </section>
 
   <section id="serverless">
     <h2>serverless</h2>
@@ -219,14 +221,13 @@
       I also like the web standards focus of Deno.
     </p>
     <p>
-      But, the serverful options feel a little more "standard" due to their
-      maturity; the same Ruby, Node, or Go code is likely to run on Fly,
-      Railway, Render, or Heroku without many tweaks.
+      My higher priority right now, thought, is "lifting and shifting"
+      traditional Ruby, Node, or Go backends
+      from Heroku to Encore, Fly, Railway, or Render.
     </p>
     <p>
-      The latency is also higher for the serverless options.
-      Is the database connection cost most of the difference?
-      It'd be great to instrument:
+      The latency is also higher for serverless stacks.
+      Mostly due to database connection cost?
     </p>
   </section>
 
