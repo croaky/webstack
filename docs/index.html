@@ -8,11 +8,26 @@
       html { font-family: 'Inter var', sans-serif; }
     }
     body {
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      overflow: hidden;
+      background-color: #f8f8f8;
+      position: fixed;
       padding: 32px;
+      top: 0;
+      width: 100%;
     }
     main,
     section {
-      padding: 5px 32px;
+      padding: 96px 32px 6px 32px;
+    }
+    nav a {
+      padding: 0 6px;
+    }
+    nav a:first-child {
+      padding: 0 6px 0 0;
     }
     iframe {
       border: none;
@@ -35,25 +50,21 @@
   </style>
 </head>
 <body>
-  <main>
+  <nav>
+    <a href="#overview">overview</a>
+    <a href="#heroku">heroku</a>
+    <a href="#serverless">serverless</a>
+    <a href="#ruby">ruby</a>
+  </nav>
+
+  <main id="overview">
     <h1>webstack</h1>
     <p>
       A project to prototype web stacks
       <a href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
     </p>
     <p>
-      API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
-    </p>
-  </main>
-
-  <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
-
-  <section>
-    <h2>overview</h2>
-    <p>
-      This project is <a href="https://dancroak.com">my</a> attempt
-      to prototype different web stacks. Each stack serves
-      a healthcheck-style HTTP API endpoint that executes a
+      Each stack serves a healthcheck-style HTTP API endpoint that executes a
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{ "status": "ok" }</code>.
       Each stack hosts on a
@@ -63,13 +74,13 @@
       database driver (no ORM).
     </p>
     <p>
-      Right now, I'm playing with these hosting providers:
+      I want to try these hosting providers:
     </p>
     <ul>
+      <li><a href="https://heroku.com">Railway</a></li>
       <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
-      <li><a href="https://encore.dev/">Encore</a></li>
+      <li><a href="https://encore.dev/">Encore</a> (TODO)</li>
       <li><a href="https://fly.io">Fly.io</a></li>
-      <li><a href="https://netlify.com">Netlify</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
       <li><a href="https://vercel.com">Vercel</a></li>
@@ -78,7 +89,7 @@
       and these runtimes (w/ routers):
     </p>
     <ul>
-      <li>Deno (<a href="https://oakserver.github.io/oak/">Oak</a>)</li>
+      <li>Deno (stdlib)</li>
       <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
       <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
       <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
@@ -88,64 +99,20 @@
     </p>
     <ul>
       <li><a href="https://www.postgresql.org/">Postgres</a></li>
-      <li><a href="https://planetscale.com/">Planetscale</a></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>serverless</h2>
-    <p>
-      Three of the hosting providers are "serverless":
-    </p>
-    <ul>
-      <li>Deno Deploy</li>
-      <li>Netlify</li>
-      <li>Vercel</li>
+      <li><a href="https://planetscale.com/">Planetscale</a> (TODO)</li>
     </ul>
     <p>
-      So far, I've tested
-      <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
-      and
-      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel's
-        serverless Go functions</a>.
-      Both used
-      <a href="https://supabase.com/">Supabase</a>
-      as the backend database.
+      API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
     </p>
-    <p>
-      Serverless feels like it could be the future;
-      it would be nice to manage fewer things.
-      And, starting my career in the early 2000s reading books like
-      <a
-          href="https://www.amazon.com/Designing-Web-Standards-Jeffrey-Zeldman/dp/0321616952">Designing
-      with Web Standards</a>,
-      I especially like the web standard-focus of Deno.
-    </p>
-    <p>
-      But, the serverful options feel a little more "standard" due to their
-      maturity; the same Ruby, Node, or Go code is likely to run on Fly,
-      Railway, Render, or Heroku without many tweaks.
-    </p>
-    <p>
-      The latency is also higher for the serverless options, I'm guessing due to
-      paying a TLS handshake cost, but would love to instrument and see how to
-      bring these latencies down:
-    </p>
-  </section>
+  </main>
 
-  <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
+  <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
 
-  <section>
-    <h2>heroku + ruby + postgres</h2>
-    <p>
-      From 2009-2017 and 2020-2022, my stack was Heroku + Ruby + Postgres.
-      That stack strongly informs my priors. I'm wondering: what's better?
-    </p>
-  </section>
-  <section>
+  <section id="heroku">
     <h2>heroku</h2>
     <p>
-      My Heroku setup was generally:
+      From 2009-2017 and 2020-2022, my stack was Heroku + Ruby + Postgres.
+      Generally:
     </p>
     <ul>
       <li>
@@ -192,7 +159,7 @@
     </ul>
   </section>
 
-  <section>
+  <section id="ruby">
     <h2>ruby</h2>
     <p>
       Ruby makes "developer happiness" a core goal but is not scoring well by
@@ -234,6 +201,36 @@
   </section>
 
   <iframe class="dash-ruby" src="https://webstack-ruby.checklyhq.com/"></iframe>
+
+  <section id="serverless">
+    <h2>serverless</h2>
+    <p>
+      For <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
+      and
+      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel
+        serverless Go function</a>,
+      I used
+      <a href="https://supabase.com/">Supabase</a>
+      for the database.
+    </p>
+    <p>
+      Serverless feels like it could be the future;
+      it would be nice to manage fewer things.
+      I also like the web standards focus of Deno.
+    </p>
+    <p>
+      But, the serverful options feel a little more "standard" due to their
+      maturity; the same Ruby, Node, or Go code is likely to run on Fly,
+      Railway, Render, or Heroku without many tweaks.
+    </p>
+    <p>
+      The latency is also higher for the serverless options.
+      Is the database connection cost most of the difference?
+      It'd be great to instrument:
+    </p>
+  </section>
+
+  <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
 
   <section>
     <h2>to be continued...</h2>
