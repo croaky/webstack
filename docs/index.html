@@ -42,6 +42,9 @@
     .dash-serverless {
       height: 310px;
     }
+    .dash-fly {
+      height: 310px;
+    }
     p,
     li {
       line-height: 1.5em;
@@ -62,6 +65,7 @@
     <a href="#example">example</a>
     <a href="#heroku">heroku</a>
     <a href="#serverless">serverless</a>
+    <a href="#fly">fly</a>
   </nav>
 
   <main id="overview">
@@ -71,15 +75,14 @@
       <a href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
     </p>
     <p>
-      I'd eventually like to go deeper on different runtimes (e.g. Deno)
-      and serverless architectures but
+      I'd eventually like to go deeper on different runtimes and serverless
+      architectures but
       <a href="https://status.heroku.com/incidents/2413">Heroku incident
         2413</a> is creating urgency to focus on a better backend hosting
       provider:
     </p>
     <ul>
-      <li><a href="https://heroku.com">Railway</a></li>
-      <li><a href="https://encore.dev/">Encore</a></li>
+      <!--<li><a href="https://encore.dev/">Encore</a></li>-->
       <li><a href="https://fly.io">Fly.io</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
@@ -98,7 +101,10 @@
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{ "status": "ok" }</code>.
       Each stack is built with a lightweight router, database connection pool,
-      and SQL database driver (no ORM). For example, in Ruby:
+      and SQL database driver (no ORM).
+    </p>
+    <p>
+      For example, in Ruby:
     </p>
     <pre>
       <code>
@@ -251,14 +257,9 @@ end</code>
       for the database.
     </p>
     <p>
-      Serverless feels like it could be the future;
-      it would be nice to manage fewer things.
-      I also like the web standards focus of Deno.
-    </p>
-    <p>
-      My higher priority right now, thought, is "lifting and shifting"
+      My higher priority right now, though, is "lifting and shifting"
       traditional Ruby, Node, or Go backends
-      from Heroku to Encore, Fly, Railway, or Render.
+      from Heroku to Fly, Railway, or Render.
     </p>
     <p>
       The latency is also higher for serverless stacks.
@@ -267,6 +268,57 @@ end</code>
   </section>
 
   <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
+
+  <section id="fly">
+    <h2>fly</h2>
+    <p>
+      I wrote and deployed Go (stdlib) and Ruby (Sinatra) apps to
+      <a href="https://fly.io/">Fly.io</a>'s San Jose region on April 6, 2022.
+      From then until May 6 2022, I observed 99.96% uptime on the Go app
+      and 99.88% uptime on the Ruby app. No surpise, the N. California check
+      showed particularly excellent P50 latencies of 71ms and 63ms (the Ruby app
+      was actually lower?!).
+    </p>
+    <p>
+      Cons
+    </p>
+    <ul>
+      <li>
+        To deploy, I had to install Docker (~1.5GB) on my laptop (Apple M1
+        chip). Without it,
+        <a href="https://github.com/croaky/webstack/tree/main/fly-go">I observed
+           errors</a>. It seems like Docker should not have been required
+         because the <code>flyctl launch</code> command's
+         <code>--remote-only</code> flag is true by default.
+      </li>
+      <li>
+        The web UI doesn't contain all information for the app
+        and is not as aesthetic as Railway, Heroku, or Render.
+      </li>
+    </ul>
+    <p>
+      Pros:
+    </p>
+    <ul>
+      <li>
+        I was able to get excellent performance and reliability from Fly.io.
+      </li>
+      <li>
+        The CLI is fantastic and feels like I can find out all information about
+        my service from it.
+      </li>
+    </ul>
+    <p>
+      TODO: One unique feature of Fly is its
+      <a
+        href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
+        Postgres read replicas</a>.
+      If I re-instrumented my apps to use this feature, Fly would probably win
+      on these read performance checks globally?
+    </p>
+  </section>
+
+  <iframe class="dash-fly" src="https://webstack-fly.checklyhq.com/"></iframe>
 
   <section>
     <h2>to be continued...</h2>
