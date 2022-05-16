@@ -119,9 +119,7 @@ pool = ConnectionPool.new(size: 5, timeout: 5) {
 }
 
 get "/" do
-  pool.with do |db|
-    db.exec "SELECT 1"
-  end
+  pool.with { |db| db.exec("SELECT 1") }
   content_type :json
   {status: "ok"}.to_json
 end</code>
