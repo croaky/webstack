@@ -31,7 +31,3 @@ Enter `DATABASE_URL` and paste copied string.
 Click "Settings" tab.
 Set "Root directory" to `/railway-ruby-sinatra`.
 Set "Healthcheck Path" to `/`.
-
-## Editorial
-
-* The SSL cert created expires only 10 days after creating the service.

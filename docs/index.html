@@ -66,6 +66,8 @@
     <a href="#heroku">heroku</a>
     <a href="#serverless">serverless</a>
     <a href="#fly">fly</a>
+    <a href="#railway">railway</a>
+    <a href="#render">render</a>
   </nav>
 
   <main id="overview">
@@ -112,24 +114,14 @@ require "connection_pool"
 require "pg"
 require "sinatra"
 
-class DB
-  def initialize
-    @pool = ConnectionPool.new(size: 5, timeout: 5) {
-      PG.connect(ENV.fetch("DATABASE_URL"))
-    }
-  end
-
-  def exec(sql)
-    @pool.with do |conn|
-      conn.exec(sql)
-    end
-  end
-end
-
-db = DB.new
+pool = ConnectionPool.new(size: 5, timeout: 5) {
+  PG.connect(ENV.fetch("DATABASE_URL"))
+}
 
 get "/" do
-  db.exec "SELECT 1"
+  pool.with do |db|
+    db.exec "SELECT 1"
+  end
   content_type :json
   {status: "ok"}.to_json
 end</code>
@@ -148,9 +140,11 @@ end</code>
     </ul>
     <p>
       For now, I'm only using
-      <a href="https://www.postgresql.org/">Postgres</a>
-      but would like to add
-      <a href="https://planetscale.com/">Planetscale</a> stacks in the future.
+      <a href="https://www.postgresql.org/">Postgres</a> for the database layer
+      but in the future would like to add
+      <a href="https://planetscale.com/">Planetscale</a> and
+      <a href="https://fly.io/blog/all-in-on-sqlite-litestream/">SQLite +
+        Litestream</a>.
     </ul>
     <!--
     <p>
@@ -258,7 +252,7 @@ end</code>
     </p>
     <p>
       My higher priority right now, though, is "lifting and shifting"
-      traditional Ruby, Node, or Go backends
+      my traditional "serverful" stacks
       from Heroku to Fly, Railway, or Render.
     </p>
     <p>
@@ -280,6 +274,18 @@ end</code>
       was actually lower?!).
     </p>
     <p>
+      Pros
+    </p>
+    <ul>
+      <li>
+        I was able to get excellent performance and reliability from Fly.io.
+      </li>
+      <li>
+        The CLI is fantastic and feels like I can find out all information about
+        my service from it.
+      </li>
+    </ul>
+    <p>
       Cons
     </p>
     <ul>
@@ -297,30 +303,41 @@ end</code>
       </li>
     </ul>
     <p>
-      Pros:
+      TODOs
     </p>
     <ul>
       <li>
-        I was able to get excellent performance and reliability from Fly.io.
+        Try
+        <a
+          href="https://fly.io/docs/getting-started/multi-region-databases/">multi-region
+          Postgres read replicas</a>.
+        If I re-instrumented my apps to use this feature, Fly would probably win
+        on these read performance checks globally?
       </li>
       <li>
-        The CLI is fantastic and feels like I can find out all information about
-        my service from it.
+        Try
+        <a href="https://fly.io/blog/all-in-on-sqlite-litestream/">SQLite +
+          Litestream</a>. It looks like docs haven't been written for this yet?
       </li>
     </ul>
-    <p>
-      TODO: One unique feature of Fly is its
-      <a
-        href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
-        Postgres read replicas</a>.
-      If I re-instrumented my apps to use this feature, Fly would probably win
-      on these read performance checks globally?
-    </p>
   </section>
 
   <iframe class="dash-fly" src="https://webstack-fly.checklyhq.com/"></iframe>
 
-  <section>
-    <h2>to be continued...</h2>
+  <section id="railway">
+    <h2>railway</h2>
+    <p>
+      Pros
+    </p>
+    <ul>
+      <li>
+        The web UI is absolutely amazing. It is really, really pretty and
+        functional.
+      </li>
+    </ul>
+  </section>
+
+  <section id="render">
+    <h2>render</h2>
   </section>
 </body>
