@@ -58,13 +58,17 @@
       padding: 0;
     }
   </style>
+  <script>
+    // if (localStorage.language === "") {
+    //   localStorage.language = "Ruby";
+    // }
+  </script>
 </head>
 <body>
   <nav>
     <a href="#overview">overview</a>
-    <a href="#example">example</a>
     <a href="#heroku">heroku</a>
-    <a href="#serverless">serverless</a>
+    <!--<a href="#serverless">serverless</a>-->
     <a href="#fly">fly</a>
     <a href="#railway">railway</a>
     <a href="#render">render</a>
@@ -73,15 +77,11 @@
   <main id="overview">
     <h1>webstack</h1>
     <p>
-      A project to prototype web stacks
-      <a href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
+      <i>A project to prototype web stacks</i>
     </p>
     <p>
-      I'd eventually like to go deeper on different runtimes and serverless
-      architectures but
       <a href="https://status.heroku.com/incidents/2413">Heroku incident
-        2413</a> is creating urgency to focus on a better backend hosting
-      provider:
+        2413</a> is creating a search for a new backend hosting provider:
     </p>
     <ul>
       <!--<li><a href="https://encore.dev/">Encore</a></li>-->
@@ -90,23 +90,11 @@
       <li><a href="https://render.com">Render</a></li>
     </ul>
     <p>
-      API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
-    </p>
-  </main>
-
-  <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
-
-  <section id="example">
-    <h2>example</h2>
-    <p>
       Each stack serves a healthcheck-style HTTP API endpoint that executes a
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{ "status": "ok" }</code>.
-      Each stack is built with a lightweight router, database connection pool,
-      and SQL database driver (no ORM).
-    </p>
-    <p>
-      For example, in Ruby:
+      Each stack uses a lightweight router, database connection pool,
+      and SQL database driver (no ORM). Example:
     </p>
     <pre>
       <code>
@@ -125,26 +113,20 @@ get "/" do
 end</code>
     </pre>
     <p>
-      See the code for all stacks in
+      See code for all stacks at
       <a
         href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>.
     </p>
-    <ul>
-      <li>Crystal (<a href="https://kemalcr.com/">Kemal</a>)</li>
-      <li>Deno (stdlib)</li>
-      <li>Go (<a href="https://github.com/go-chi/chi">Chi</a>)</li>
-      <li>Node (<a href="https://expressjs.com/">Express</a>)</li>
-      <li>Ruby (<a href="http://sinatrarb.com/">Sinatra</a>)</li>
-    </ul>
     <p>
-      For now, I'm only using
-      <a href="https://www.postgresql.org/">Postgres</a> for the database layer
-      but in the future would like to add
-      <a href="https://planetscale.com/">Planetscale</a> and
-      <a href="https://fly.io/blog/all-in-on-sqlite-litestream/">SQLite +
-        Litestream</a>.
-    </ul>
-    <!--
+      API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
+    </p>
+  </main>
+
+  <iframe class="dash-main" src="https://webstack.checklyhq.com/"></iframe>
+
+  <!--
+  <section id="ruby">
+    <h2>ruby</h2>
     <p>
       Ruby makes "developer happiness" a core goal but is not scoring well by
       that metric. See "most loved" in
@@ -182,10 +164,8 @@ end</code>
         href="https://brandur.org/fragments/large-scale-ruby-refactoring">Brandur
         here</a>.
     </p>
-    -->
   </section>
-
-  <iframe class="dash-ruby" src="https://webstack-ruby.checklyhq.com/"></iframe>
+  -->
 
   <section id="heroku">
     <h2>heroku</h2>
@@ -237,6 +217,7 @@ end</code>
     </ul>
   </section>
 
+  <!--
   <section id="serverless">
     <h2>serverless</h2>
     <p>
@@ -258,6 +239,7 @@ end</code>
       Mostly due to database connection cost?
     </p>
   </section>
+  -->
 
   <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
 
