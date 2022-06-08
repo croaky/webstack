@@ -34,16 +34,7 @@
       width: 100%;
     }
     .dash-main {
-      height: 720px;
-    }
-    .dash-ruby {
-      height: 450px;
-    }
-    .dash-serverless {
-      height: 310px;
-    }
-    .dash-fly {
-      height: 310px;
+      height: 860px;
     }
     p,
     li {
@@ -68,10 +59,10 @@
   <nav>
     <a href="#overview">overview</a>
     <a href="#heroku">heroku</a>
-    <!--<a href="#serverless">serverless</a>-->
     <a href="#fly">fly</a>
     <a href="#railway">railway</a>
     <a href="#render">render</a>
+    <a href="#serverless">serverless</a>
   </nav>
 
   <main id="overview">
@@ -80,14 +71,21 @@
       <i>A project to prototype web stacks</i>
     </p>
     <p>
-      <a href="https://status.heroku.com/incidents/2413">Heroku incident
-        2413</a> is creating a search for a new backend hosting provider:
+      <a href="https://heroku.com">Heroku</a> and "New Herokus":
     </p>
     <ul>
-      <!--<li><a href="https://encore.dev/">Encore</a></li>-->
+      <li><a href="https://encore.dev/">Encore</a> (TODO)</li>
       <li><a href="https://fly.io">Fly.io</a></li>
+      <li><a href="https://www.getporter.dev/">Porter</a> (TOOD)</li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
+    </ul>
+    <p>
+      Serverless functions:
+    </p>
+    <ul>
+      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
+      <li><a href="https://vercel.com">Vercel</a></li>
     </ul>
     <p>
       Each stack serves a healthcheck-style HTTP API endpoint that executes a
@@ -194,79 +192,33 @@ end</code>
       </li>
     </ul>
     <p>
-      Heroku's GitHub integration broke April 2022 in
+      Heroku lacks overdue features.
+      It's GitHub integration broke April 2022 in
       <a href="https://status.heroku.com/incidents/2413">incident 2413</a> and
-      has not been restored.
-      Heroku also lacks overdue features that e.g. Render now supports:
-    </p>
-    <ul>
-      <li>
-        HTTP/2 support
-      </li>
-      <li>
-        <a href="https://render.com/docs/databases">IP access control on
-          Postgres databases</a>
-      </li>
-      <li>
-        <a href="https://render.com/docs/ddos-protection">DDoS
-          protection</a>
-      </li>
-      <li>
-        <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
-      </li>
-    </ul>
-  </section>
-
-  <!--
-  <section id="serverless">
-    <h2>serverless</h2>
-    <p>
-      For <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
-      and
-      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel
-        serverless Go function</a>,
-      I used
-      <a href="https://supabase.com/">Supabase</a>
-      for the database.
-    </p>
-    <p>
-      My higher priority right now, though, is "lifting and shifting"
-      my traditional "serverful" stacks
-      from Heroku to Fly, Railway, or Render.
-    </p>
-    <p>
-      The latency is also higher for serverless stacks.
-      Mostly due to database connection cost?
+      took over a month to restore.
     </p>
   </section>
-  -->
-
-  <iframe class="dash-serverless" src="https://webstack-serverless.checklyhq.com/"></iframe>
 
   <section id="fly">
     <h2>fly</h2>
     <p>
-      I wrote and deployed Go (stdlib) and Ruby (Sinatra) apps to
-      <a href="https://fly.io/">Fly.io</a>'s San Jose region on April 6, 2022.
-      From then until May 6 2022, I observed 99.96% uptime on the Go app
-      and 99.88% uptime on the Ruby app. No surpise, the N. California check
-      showed particularly excellent P50 latencies of 71ms and 63ms (the Ruby app
-      was actually lower?!).
-    </p>
-    <p>
-      Pros
+      Pros:
     </p>
     <ul>
       <li>
         I was able to get excellent performance and reliability from Fly.io.
       </li>
       <li>
-        The CLI is fantastic and feels like I can find out all information about
-        my service from it.
+        The CLI is fantastic and seems to contain all info for the app.
+      </li>
+      <li>
+        It seems like Fly can understand a <code>Procfile</code>, which is
+        helpful for not needing to brush up on <code>Dockerfile</code> layouts,
+        which I'm rusty on.
       </li>
     </ul>
     <p>
-      Cons
+      Cons:
     </p>
     <ul>
       <li>
@@ -278,12 +230,12 @@ end</code>
          <code>--remote-only</code> flag is true by default.
       </li>
       <li>
-        The web UI doesn't contain all information for the app
-        and is not as aesthetic as Railway, Heroku, or Render.
+        The web UI is not as aesthetic as Railway, Heroku, or Render.
+        There is more info in the CLI that could be in the UI.
       </li>
     </ul>
     <p>
-      TODOs
+      TODOs:
     </p>
     <ul>
       <li>
@@ -302,22 +254,76 @@ end</code>
     </ul>
   </section>
 
-  <iframe class="dash-fly" src="https://webstack-fly.checklyhq.com/"></iframe>
-
   <section id="railway">
     <h2>railway</h2>
     <p>
-      Pros
+      Pros:
     </p>
     <ul>
       <li>
-        The web UI is absolutely amazing. It is really, really pretty and
-        functional.
+        The web UI is absolutely gorgeous.
+      </li>
+      <li>
+        Web services and Postgres are easy to set up and connect to each other.
+        The UI provides a great visualization of their relationship.
+      </li>
+      <li>
+        Nice in-browser SQL editor / console.
+      </li>
+      <li>
+        Philosophically aligned with my general mentality of wanting to not
+        think in containers.
+      </li>
+    </ul>
+    <p>
+      TODOs:
+    </p>
+    <ul>
+      <li>
+        They're moving to a new packaging system they're creating called
+        <a
+          href="https://docs.railway.app/deploy/builds#nixpacks-beta">Nixpacks</a>.
+        It seems interesting but I'm unclear what benefit it might provide me
+        as an end user.
       </li>
     </ul>
   </section>
 
   <section id="render">
     <h2>render</h2>
+    <p>Render supports some key features that Heroku does not:</p>
+    <ul>
+      <li>
+        HTTP/2 support
+      </li>
+      <li>
+        <a href="https://render.com/docs/databases">IP access control on
+          Postgres databases</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/ddos-protection">DDoS
+          protection</a>
+      </li>
+      <li>
+        <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="serverless">
+    <h2>serverless</h2>
+    <p>
+      For <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
+      and a
+      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel
+        serverless Go function</a>,
+      I used
+      <a href="https://supabase.com/">Supabase</a>
+      for the database.
+    </p>
+    <p>
+      The latency is much higher for serverless stacks,
+      mostly due to database connection cost?
+    </p>
   </section>
 </body>
