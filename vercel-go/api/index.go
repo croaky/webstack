@@ -16,23 +16,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	dbUrl, ok := os.LookupEnv("DATABASE_URL")
 	if !ok {
 		log.Fatal("DATABASE_URL not set")
-		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
 
 	db, err := sql.Open("postgres", dbUrl)
 	if err != nil {
 		log.Fatal(err)
-		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
 
 	_, err = db.Query("SELECT 1")
 	if err != nil {
 		log.Fatal(err)
-		fmt.Fprintf(w, "{status:\"internal server error\"}")
+		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
 
-	fmt.Fprintf(w, "{status:\"ok\"}")
+	fmt.Fprintf(w, "{\"status\":\"ok\"}")
 }

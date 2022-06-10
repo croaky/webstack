@@ -60,5 +60,5 @@ func Headers(next http.Handler) http.Handler {
 func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
 	var col int
 	s.db.QueryRow(r.Context(), "SELECT 1").Scan(&col)
-	fmt.Fprintf(w, "{status:\"ok\"}")
+	fmt.Fprintf(w, "{\"status\":\"ok\"}")
 }

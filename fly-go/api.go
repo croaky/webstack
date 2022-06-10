@@ -31,7 +31,7 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		db.Query("SELECT 1")
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, "{status:\"ok\"}")
+		fmt.Fprintf(w, "{\"status\":\"ok\"}")
 	})
 
 	// listen
