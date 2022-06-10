@@ -4,12 +4,25 @@ require "sinatra"
 
 class DB
   def initialize
+    connect
+  end
+
+  def exec(sql)
+    do_exec(sql)
+  rescue PG::ConnectionBad
+    connect
+    do_exec(sql)
+  end
+
+  private
+
+  def connect
     @pool = ConnectionPool.new(size: 5, timeout: 5) {
       PG.connect(ENV.fetch("DATABASE_URL"))
     }
   end
 
-  def exec(sql)
+  def do_exec(sql)
     @pool.with do |conn|
       conn.exec(sql)
     end
