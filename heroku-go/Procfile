@@ -1,1 +1,1 @@
-web: bin/heroku-go
+web: bin/server
