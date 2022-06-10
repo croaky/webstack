@@ -15,16 +15,29 @@ end
 
 class DB
   def initialize
-    @pool = ConnectionPool.new(size: 5, timeout: 5) {
-      db = PG.connect(ENV.fetch("DATABASE_URL"))
-      db.type_map_for_results = PG::BasicTypeMapForResults.new(db)
-      db
-    }
+    connect
   end
 
   def exec(sql)
     @pool.with do |conn|
       conn.exec(sql)
+    end
+  rescue PG::ConnectionBad
+    connect
+    @pool.with do |conn|
+      conn.exec(sql)
+    end
+  end
+
+  private def connect
+    if @pool.nil?
+      @pool = ConnectionPool.new(size: 5, timeout: 5) {
+        db = PG.connect(ENV.fetch("DATABASE_URL"))
+        db.type_map_for_results = PG::BasicTypeMapForResults.new(db)
+        db
+      }
+    else
+      @pool.reload { |conn| conn&.close }
     end
   end
 end
@@ -40,7 +53,7 @@ before do
   )
 end
 
-get "/health" do
+get "/" do
   db.exec "SELECT 1"
   content_type :json
   {status: "ok"}.to_json
