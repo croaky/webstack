@@ -1,14 +1,12 @@
-# Railway Ruby
+# Railway Go
 
 See example deployed at
-<https://webstack-ruby-sinatra.up.railway.app/>.
+<https://webstack-go.up.railway.app/>.
 
 ## Setup
 
 ```
-bundle
-createdb webstack_dev
-DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb
+go run api.go
 ```
 
 Go to <https://railway.app/new>.
@@ -29,5 +27,5 @@ Click "+ New Variable".
 Enter `DATABASE_URL` and paste copied string.
 
 Click "Settings" tab.
-Set "Root directory" to `/railway-ruby`.
+Set "Root directory" to `/railway-go`.
 Set "Healthcheck Path" to `/`.
