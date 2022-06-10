@@ -19,25 +19,23 @@ class DB
   end
 
   def exec(sql)
-    @pool.with do |conn|
-      conn.exec(sql)
-    end
+    do_exec(sql)
   rescue PG::ConnectionBad
     connect
-    @pool.with do |conn|
-      conn.exec(sql)
-    end
+    do_exec(sql)
   end
 
-  private def connect
-    if @pool.nil?
-      @pool = ConnectionPool.new(size: 5, timeout: 5) {
-        db = PG.connect(ENV.fetch("DATABASE_URL"))
-        db.type_map_for_results = PG::BasicTypeMapForResults.new(db)
-        db
-      }
-    else
-      @pool.reload { |conn| conn&.close }
+  private
+
+  def connect
+    @pool = ConnectionPool.new(size: 5, timeout: 5) {
+      PG.connect(ENV.fetch("DATABASE_URL"))
+    }
+  end
+
+  def do_exec(sql)
+    @pool.with do |conn|
+      conn.exec(sql)
     end
   end
 end
