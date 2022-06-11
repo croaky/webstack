@@ -68,7 +68,11 @@
   <main id="overview">
     <h1>webstack</h1>
     <p>
-      <i>A project to prototype web stacks</i>
+      <i>
+        A project to prototype web stacks
+        <a
+          href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>
+      </i>
     </p>
     <p>
       <a href="https://heroku.com">Heroku</a> and "New Herokus":
@@ -83,7 +87,7 @@
     </p>
     <ul>
       <li><a href="https://encore.dev/">Encore</a> (TODO)</li>
-      <li><a href="https://www.getporter.dev/">Porter</a> (TOOD)</li>
+      <li><a href="https://www.getporter.dev/">Porter</a> (TODO)</li>
     </ul>
     <p>
       Serverless functions:
@@ -95,7 +99,7 @@
     <p>
       Each stack serves a healthcheck-style HTTP API endpoint that executes a
       <code>SELECT 1</code> to a SQL database
-      and responds with JSON <code>{ "status": "ok" }</code>.
+      and responds with JSON <code>{"status":"ok"}</code>.
       Each stack uses a lightweight router, database connection pool,
       and SQL database driver (no ORM). Example:
     </p>
@@ -115,11 +119,6 @@ get "/" do
   {status: "ok"}.to_json
 end</code>
     </pre>
-    <p>
-      See code for all stacks at
-      <a
-        href="https://github.com/croaky/webstack">github.com/croaky/webstack</a>.
-    </p>
     <p>
       API checks from N. California, Montreal, Ireland, Stockholm, and Sydney:
     </p>
