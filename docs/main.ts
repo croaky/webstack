@@ -14,7 +14,7 @@ const resp = await fetch(
 );
 const data = await resp.json();
 
-const table = new AsciiTable("API checks last 7 days");
+const table = new AsciiTable("API checks every 10 minutes last 7 days");
 table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
 table.setAlign(1, AsciiAlign.RIGHT);
 
@@ -29,5 +29,5 @@ for (let i = 0; i < data.length; i++) {
 
 const tmplHTML = await Deno.readTextFile("./docs/template.html");
 const genHTML = tmplHTML.replace("REPLACE_DASHBOARD_MAIN", table.toString());
-await Deno.mkdir("./public");
+await Deno.mkdir("./public", { recursive: true });
 await Deno.writeTextFile("./public/index.html", genHTML);
