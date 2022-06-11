@@ -1,6 +1,10 @@
 name: deno
 on: [push]
 
+env:
+  CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
+  CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+
 jobs:
   deploy:
     name: deploy
