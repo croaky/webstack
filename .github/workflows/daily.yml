@@ -1,0 +1,37 @@
+name: daily publish
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every day at midnight UTC
+
+env:
+  CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
+  CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Build site
+        shell: bash
+        run: deno run --allow-read --allow-env --allow-net --allow-write docs/main.ts
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: "croaky-webstack"
+          entrypoint: https://deno.land/std@0.131.0/http/file_server.ts
+          root: public
