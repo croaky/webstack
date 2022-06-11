@@ -1,0 +1,25 @@
+name: deno
+on: [push]
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Build site
+        shell: bash
+        run: deno run --allow-read --allow-env --allow-net --allow-write docs/main.ts
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: "croaky-webstack"
+          entrypoint: https://deno.land/std@0.131.0/http/file_server.ts
+          root: public

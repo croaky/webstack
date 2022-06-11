@@ -14,17 +14,20 @@ const resp = await fetch(
 );
 const data = await resp.json();
 
-const table = new AsciiTable("Web stacks last 7 days");
-table.setHeading("Name", "OK %", "Avg (ms)", "p95 (ms)");
+const table = new AsciiTable("API checks last 7 days");
+table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
 table.setAlign(1, AsciiAlign.RIGHT);
 
 for (let i = 0; i < data.length; i++) {
   table.addRow(
     data[i]["name"],
-    `${data[i]["aggregate"]["successRatio"].toFixed(1)}%`,
+    data[i]["aggregate"]["successRatio"].toFixed(1),
     data[i]["aggregate"]["avg"],
     data[i]["aggregate"]["p95"]
   );
 }
 
-console.log(table.toString());
+const tmplHTML = await Deno.readTextFile("./docs/template.html");
+const genHTML = tmplHTML.replace("REPLACE_DASHBOARD_MAIN", table.toString());
+await Deno.mkdir("./public");
+await Deno.writeTextFile("./public/index.html", genHTML);
