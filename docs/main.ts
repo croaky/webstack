@@ -21,7 +21,7 @@ table.setAlign(1, AsciiAlign.RIGHT);
 for (let i = 0; i < data.length; i++) {
   table.addRow(
     data[i]["name"],
-    data[i]["aggregate"]["successRatio"].toFixed(1),
+    data[i]["aggregate"]["successRatio"].toFixed(2),
     data[i]["aggregate"]["avg"],
     data[i]["aggregate"]["p95"]
   );
