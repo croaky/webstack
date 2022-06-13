@@ -14,7 +14,7 @@ const resp = await fetch(
 );
 const data = await resp.json();
 
-const table = new AsciiTable("API checks every 10 minutes last 7 days");
+const table = new AsciiTable("API checks last 7 days");
 table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
 table.setAlign(1, AsciiAlign.RIGHT);
 
