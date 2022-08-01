@@ -30,7 +30,7 @@ for (let i = 0; i < data.length; i++) {
   }
 }
 
-const tmplHTML = await Deno.readTextFile("./template.html");
+const tmplHTML = await Deno.readTextFile("./docs/template.html");
 const genHTML = tmplHTML.replace("REPLACE_DASHBOARD_MAIN", table.toString());
 await Deno.mkdir("./public", { recursive: true });
 await Deno.writeTextFile("./public/index.html", genHTML);
