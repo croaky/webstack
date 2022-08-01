@@ -1,3 +1,4 @@
+// :!clear && deno run --allow-read --allow-env --allow-net --allow-write %
 import "https://deno.land/x/dotenv/load.ts";
 import AsciiTable, { AsciiAlign } from "https://deno.land/x/ascii_table/mod.ts";
 
@@ -10,7 +11,7 @@ const resp = await fetch(
       Authorization: `Bearer ${Deno.env.get("CHECKLY_API_KEY")}`,
       "X-Checkly-Account": `${Deno.env.get("CHECKLY_ACCOUNT_ID")}`,
     },
-  }
+  },
 );
 const data = await resp.json();
 
@@ -19,15 +20,17 @@ table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
 table.setAlign(1, AsciiAlign.RIGHT);
 
 for (let i = 0; i < data.length; i++) {
-  table.addRow(
-    data[i]["name"],
-    data[i]["aggregate"]["successRatio"].toFixed(2),
-    data[i]["aggregate"]["avg"],
-    data[i]["aggregate"]["p95"]
-  );
+  if (data[i]["deactivated"] === false) {
+    table.addRow(
+      data[i]["name"],
+      data[i]["aggregate"]["successRatio"].toFixed(2),
+      data[i]["aggregate"]["avg"],
+      data[i]["aggregate"]["p95"],
+    );
+  }
 }
 
-const tmplHTML = await Deno.readTextFile("./docs/template.html");
+const tmplHTML = await Deno.readTextFile("./template.html");
 const genHTML = tmplHTML.replace("REPLACE_DASHBOARD_MAIN", table.toString());
 await Deno.mkdir("./public", { recursive: true });
 await Deno.writeTextFile("./public/index.html", genHTML);
