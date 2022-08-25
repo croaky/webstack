@@ -245,12 +245,22 @@ end</code>
     </p>
     <ul>
       <li>
-        To deploy, I had to install Docker (~1.5GB) on my laptop (Apple M1
-        chip). Without it,
+        To deploy from my laptop (Apple M1 chip),
+        I had to install Docker (~1.5GB).
+        Without it,
         <a href="https://github.com/croaky/webstack/tree/main/fly-go">I observed
            errors</a>. It seems like Docker should not have been required
          because the <code>flyctl launch</code> command's
          <code>--remote-only</code> flag is true by default.
+      </li>
+      <li>
+        To automatically deploy my <code>main</code> branch,
+        I had to create
+        <a
+          href="https://github.com/croaky/webstack/blob/main/.github/workflows/fly.yml">a
+          GitHub Actions workflow</a>.
+        Not really a big deal. Pretty easy to set up but not as "magical" as
+        Railway's deploys.
       </li>
       <li>
         The web UI is not as aesthetic as Railway, Heroku, or Render.
