@@ -1,7 +1,7 @@
 # Fly Ruby
 
 See example deployed at
-<https://webstack-ruby-sinatra.fly.dev/>.
+<https://webstack-read-replicas.fly.dev/>.
 
 ## Setup
 
@@ -20,6 +20,7 @@ brew install flyctl
 flyctl auth login
 rm -rf ~/.docker
 flyctl launch --remote-only
+flyctl secrets set PRIMARY_REGION=sjc
 ```
 
 I prefer to not install Docker on my local machine. Fly.io has a cool
