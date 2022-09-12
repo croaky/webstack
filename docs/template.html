@@ -234,15 +234,21 @@ end</code>
         I was able to get excellent performance and reliability from Fly.io.
       </li>
       <li>
-        The CLI is fantastic and seems to contain all info for the app.
+        The CLI is fantastic.
       </li>
       <li>
-        It can understand a <code>Procfile</code> layouts.
+        Fly understands <code>Procfile</code> layouts.
       </li>
       <li>
         I prefer to not install Docker on my local machine. Fly.io has a
         <code>--remote-only</code> option that builds using a remote Docker builder
         that they set up in your account.
+      </li>
+      <li>
+        <a
+          href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
+          Postgres read replicas</a>
+        appear to provide the best read performance for my global tests.
       </li>
     </ul>
     <p>
@@ -268,17 +274,9 @@ end</code>
       </li>
     </ul>
     <p>
-      TODOs:
+      TODO:
     </p>
     <ul>
-      <li>
-        Try
-        <a
-          href="https://fly.io/docs/getting-started/multi-region-databases/">multi-region
-          Postgres read replicas</a>.
-        If I re-instrumented my apps to use this feature, Fly would probably win
-        on these read performance checks globally?
-      </li>
       <li>
         Try
         <a href="https://fly.io/blog/all-in-on-sqlite-litestream/">SQLite +
