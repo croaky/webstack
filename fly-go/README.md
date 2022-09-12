@@ -11,32 +11,20 @@ Develop:
 go run api.go
 ```
 
-Install Docker from <https://www.docker.com/get-started/>
-(~1.5GB for M1 chip).
-
 Set up Fly:
 
 ```
 brew install flyctl
 flyctl auth login
-flyctl launch
+rm -rf ~/.docker
+flyctl launch --remote-only
 ```
 
-## Editorial
-
-I tried using the service without having Docker installed locally and was unable
-to deploy successfully. Example errors below.
-
-Error on `flyctl launch`:
+I prefer to not install Docker on my local machine. Fly.io has a cool
+`--remote-only` option that will use a remote Docker builder that they set up in
+your account. One "gotcha" is a leftover `~/.docker` directory can cause these
+errors when using Fly:
 
 ```
-Error Failed attaching webstack-go-db to the Postgres cluster webstack-go: unexpected end of JSON input.\nTry attaching manually with 'fly postgres attach --app webstack-go --postgres-app webstack-go-db'
+Error failed to fetch builder image 'index.docker.io/heroku/buildpacks:20': resolve auth for ref index.docker.io/heroku/buildpacks:20: error getting credentials - err: exec: "docker-credential-desktop": executable file not found in $PATH, out: ``
 ```
-
-Error on `flyctl deploy`:
-
-```
-v0 failed - Failed due to unhealthy allocations - no stable job version to auto revert to and deploying as v1
-```
-
-After installing Docker, `flyctl launch` worked smoothly.
