@@ -50,11 +50,6 @@
       line-height: 1.25em;
     }
   </style>
-  <script>
-    // if (localStorage.language === "") {
-    //   localStorage.language = "Ruby";
-    // }
-  </script>
 </head>
 <body>
   <nav>
@@ -63,7 +58,6 @@
     <a href="#fly">fly</a>
     <a href="#railway">railway</a>
     <a href="#render">render</a>
-    <a href="#serverless">serverless</a>
   </nav>
 
   <main id="overview">
@@ -98,23 +92,6 @@ REPLACE_DASHBOARD_MAIN</code>
     </ul>
 
     <p>
-      Serverless functions:
-    </p>
-    <ul>
-      <li><a href="https://deno.com/deploy">Deno Deploy</a></li>
-      <li><a href="https://netlify.com">Netlify</a> (TODO)</li>
-      <li><a href="https://vercel.com">Vercel</a></li>
-    </ul>
-
-    <p>
-      PaaS in your own AWS or GCP account:
-    </p>
-    <ul>
-      <li><a href="https://encore.dev/">Encore</a> (TODO)</li>
-      <li><a href="https://www.getporter.dev/">Porter</a> (TODO)</li>
-    </ul>
-
-    <p>
       Each stack serves a healthcheck-style HTTP API endpoint that executes a
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{"status":"ok"}</code>.
@@ -140,49 +117,6 @@ end</code>
     </pre>
   </main>
 
-  <!--
-  <section id="ruby">
-    <h2>ruby</h2>
-    <p>
-      Ruby makes "developer happiness" a core goal but is not scoring well by
-      that metric. See "most loved" in
-      <a href="https://insights.stackoverflow.com/survey/2021#most-loved-dreaded-and-wanted-language-love-dread">Stack Overflow's
-         annual developer survey</a>:
-    </p>
-    <ul>
-      <li>87% Rust</li>
-      <li>73% TypeScript</li>
-      <li>72% Elixir</li>
-      <li>68% Python</li>
-      <li>64% Swift</li>
-      <li>63% Go</li>
-      <li>62% SQL</li>
-      <li>62% Kotlin</li>
-      <li>62% JavaScript</li>
-      <li>60% HTML/CSS</li>
-      <li>59% Crystal</li>
-      <li>56% Bash</li>
-      <li>53% Ruby</li>
-      <li>49% C++</li>
-      <li>47% Java</li>
-      <li>40% C</li>
-    </ul>
-    <p>
-      If the survey respondents are like me,
-      they enjoy writing small Ruby programs but in larger programs,
-      find it easier to understand and change code in
-      in other stacks like Go.
-    </p>
-    <p>
-      As part of this project, I hope to test <a href="https://sorbet.org/">Sorbet</a>.
-      I suspect I'll feel similarly as
-      <a
-        href="https://brandur.org/fragments/large-scale-ruby-refactoring">Brandur
-        here</a>.
-    </p>
-  </section>
-  -->
-
   <section id="heroku">
     <h2>heroku</h2>
     <p>
@@ -206,7 +140,8 @@ end</code>
       <li>
         Configure production database with a
         <a
-          href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">follower</a>
+          href="https://devcenter.heroku.com/articles/heroku-postgres-follower-databases">high
+          availability follower</a>
       </li>
     </ul>
     <p>
@@ -214,12 +149,22 @@ end</code>
     </p>
     <ul>
       <li>
-        Heroku lacks overdue features.
+        Heroku lacks long overdue features such as HTTP/2
+      </li>
+      <li>
+        Some "table stakes" features such as restricting access to
+        Postgres from the public internet require a major increase in cost.
       </li>
       <li>
         It's GitHub integration broke April 2022 in
         <a href="https://status.heroku.com/incidents/2413">incident 2413</a> and
         took over a month to restore.
+      </li>
+      <li>
+        Heroku <a
+          href="https://techcrunch.com/2022/08/25/heroku-announces-plans-to-eliminate-free-plans-blaming-fraud-and-abuse/">changed
+          its pricing in August 2022</a> which makes it more difficult to
+        prototype hobby apps.
       </li>
     </ul>
   </section>
@@ -231,18 +176,13 @@ end</code>
     </p>
     <ul>
       <li>
-        I was able to get excellent performance and reliability from Fly.io.
+        Excellent performance and reliability.
+      </li>
+      <li>
+        HTTP/2 support.
       </li>
       <li>
         The CLI is fantastic.
-      </li>
-      <li>
-        Fly understands <code>Procfile</code> layouts.
-      </li>
-      <li>
-        I prefer to not install Docker on my local machine. Fly.io has a
-        <code>--remote-only</code> option that builds using a remote Docker builder
-        that they set up in your account.
       </li>
       <li>
         <a
@@ -250,37 +190,44 @@ end</code>
           Postgres read replicas</a>
         appear to provide the best read performance for my global tests.
       </li>
+      <li>
+        HA Postgres databases are available.
+      </li>
+      <li>
+        I prefer to not install Docker on my local machine. Fly.io has a
+        <code>--remote-only</code> option that builds using a remote Docker builder
+        that they set up in your account.
+      </li>
+      <li>
+        They support a few Docker or buildpack options including Railway's
+        <a href="https://docs.railway.app/deploy/builds">Nixpacks</a>.
+        Using the <code>--nixpacks</code> flag, I was able to reduce my fly-go
+        Docker image to 88MB with deploys finishing in 40 seconds, which feels
+        acceptable.
+      </li>
     </ul>
     <p>
-      Cons:
+      Pro and con?
     </p>
     <ul>
-      <li>
-        My app resulted in a 634 MB Docker image,
-        which feels large for a small Sinatra app?
-      </li>
       <li>
         To automatically deploy my <code>main</code> branch,
         I had to create
         <a
           href="https://github.com/croaky/webstack/blob/main/.github/workflows/fly.yml">a
           GitHub Actions workflow</a>.
-        Neat, and pretty easy to set up, but not as "magical" as Railway's
-        deploys.
-      </li>
-      <li>
-        The web UI is not as aesthetic as Railway, Heroku, or Render.
-        There is more info in the CLI that could be in the UI.
+        This is not as ergonomic as Render's or Railway's deploys
+        but maybe there's a nice security benefit to more intentionally securing
+        a secret within the GitHub repo than the OAuth permissions dance?
       </li>
     </ul>
     <p>
-      TODO:
+      Cons:
     </p>
     <ul>
       <li>
-        Try
-        <a href="https://fly.io/blog/all-in-on-sqlite-litestream/">SQLite +
-          Litestream</a>. It looks like docs haven't been written for this yet?
+        The web UI is not as aesthetic as Railway, Heroku, or Render.
+        There is more info in the CLI that could be in the UI.
       </li>
     </ul>
   </section>
@@ -316,14 +263,25 @@ end</code>
     </p>
     <ul>
       <li>
+        The only region supported so far is US West.
+        <a
+            href="https://feedback.railway.app/feature-requests/p/configurable-deployment-region">Other
+            regions are planned</a>
+      </li>
+      <li>
+        Postgres databases are exposed to the public internet like Heroku
+        Postgres on Heroku's Common Runtime.
+        <a
+          href="https://feedback.railway.app/feature-requests/p/internal-networking">Private
+          networking is planned</a>
+      </li>
+      <li>
+        HA Postgres databases are not available.
+      </li>
+      <li>
         SSL certs at set with a short expiration, which makes me nervous
         when reviewing
         <a href="https://webstack.checklyhq.com/">my Checkly dashboard</a>.
-      </li>
-      <li>
-        When testing Deno on Railway, the Postgres database driver threw
-        `invalid peer certificate UnknownIssuer` errors and defaulted to a
-        non-encrypted connection.
       </li>
     </ul>
   </section>
@@ -354,7 +312,7 @@ end</code>
       <li>
         Render's free tier is not as generous as Fly's or Railway's.
         I've therefore kept fewer Render apps running
-        and explored it less than Railway.
+        and explored it less than Railway or Fly.
       </li>
       <li>
         The <a href="https://render.com/docs/ruby-version">default Ruby version</a>
@@ -366,23 +324,6 @@ end</code>
         HA Postgres databases are not available.
       </li>
     </ul>
-  </section>
-
-  <section id="serverless">
-    <h2>serverless</h2>
-    <p>
-      For <a href="https://github.com/croaky/webstack/tree/main/deno-deploy">Deno Deploy</a>
-      and a
-      <a href="https://github.com/croaky/webstack/tree/main/vercel-go">Vercel
-        serverless Go function</a>,
-      I used
-      <a href="https://supabase.com/">Supabase</a>
-      for the database.
-    </p>
-    <p>
-      The latency is much higher for serverless stacks,
-      mostly due to database connection cost?
-    </p>
   </section>
 </body>
 </html>
