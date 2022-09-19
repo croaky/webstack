@@ -15,3 +15,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: cd fly-go && flyctl deploy --remote-only --nixpacks
+
+  deploy-fly-read-replicas:
+    name: Deploy fly-read-replicas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: cd fly-read-replicas && flyctl deploy --remote-only --nixpacks
