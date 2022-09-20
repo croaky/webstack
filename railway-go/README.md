@@ -1,7 +1,7 @@
 # Railway Go
 
 See example deployed at
-<https://webstack-go.up.railway.app/>.
+<https://railway-go.statusok.com>.
 
 ## Setup
 
