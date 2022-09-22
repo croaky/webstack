@@ -1,7 +1,7 @@
 # Railway Ruby
 
 See example deployed at
-<https://webstack-ruby-sinatra.up.railway.app/>.
+<https://webstack-ruby.up.railway.app/>.
 
 ## Setup
 
