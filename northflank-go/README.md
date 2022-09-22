@@ -16,7 +16,7 @@ Set up Northflank project and service:
 * [Create a project](https://northflank.com/docs/v1/application/getting-started/create-a-project)
 * Choose a name and region "US - Central" or "Europe - West".
 * Choose "Add new service".
-* Choose "Combined: Build and deploy a Git repo".
+* Choose "Build: Build a Git repo and store image".
 * Choose GitHub repository and `main` branch.
 * For build options, choose "Buildpack" > `heroku/buildpacks:20` and
   "Build context" of `/northflank-go`.
@@ -50,3 +50,8 @@ Little things I came across:
 * I was not able to get HTTP/2 working, had to stay on HTTP/1.1.
 * Within "Services" > "Builds", when I click "Start build",
   I'm redirected to the "Commits" tab and no build seems to start.
+* I'm confused about how I set up pull request deploys and staging-production
+  pipelines. "Combined" services don't let me select `*` pull requests but let
+  me auto-deploy `main`. In both "Build" and "Combined" services,
+  I haven't figured out yet how to add a service to a pipeline. I can select
+  select a service in a "Build" pipeline but am unable to add.
