@@ -56,6 +56,7 @@
     <a href="#overview">overview</a>
     <a href="#heroku">heroku</a>
     <a href="#fly">fly</a>
+    <a href="#northflank">northflank</a>
     <a href="#railway">railway</a>
     <a href="#render">render</a>
   </nav>
@@ -86,9 +87,9 @@ REPLACE_DASHBOARD_MAIN</code>
     </p>
     <ul>
       <li><a href="https://fly.io">Fly.io</a></li>
+      <li><a href="https://northflank.com/">Northflank</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
-      <li><a href="https://northflank.com/">Northflank</a> (TODO)</li>
     </ul>
 
     <p>
@@ -194,15 +195,15 @@ end</code>
         HA Postgres databases are available.
       </li>
       <li>
-        I prefer to not install Docker on my local machine. Fly.io has a
-        <code>--remote-only</code> option that builds using a remote Docker builder
-        that they set up in your account.
+        A <code>--remote-only</code> option builds on a remote Docker builder
+        that they set up in your account. Depending on your builder, you may not
+        need Docker installed on your laptop.
       </li>
       <li>
         They support a few Docker or buildpack options including Railway's
         <a href="https://docs.railway.app/deploy/builds">Nixpacks</a>.
-        Using the <code>--nixpacks</code> flag, I was able to reduce my fly-go
-        Docker image to 88MB with deploys finishing in 40 seconds, which feels
+        Using the <code>--nixpacks</code> flag, I've seen image sizes
+        between 30MB-90MB with deploys finishing in ~40 seconds, which feels
         acceptable.
       </li>
     </ul>
@@ -226,8 +227,83 @@ end</code>
     </p>
     <ul>
       <li>
+        <a
+          href="https://fly.io/docs/rails/getting-started/migrate-from-heroku/#databases">Fly's
+          Postgres databases are not managed</a>.
+      </li>
+      <li>
         The web UI is not as aesthetic as Railway, Heroku, or Render.
         There is more info in the CLI that could be in the UI.
+      </li>
+      <li>
+        The <code>--nixpacks</code> flag can not currently be used with the
+        <code>--remote-only</code> flag. Meaning, to use Nixpacks, you have to
+        have Docker installed on your laptop.
+      </li>
+    </ul>
+  </section>
+
+  <section id="northflank">
+    <h2>northflank</h2>
+    <p>
+      Pros:
+    </p>
+    <ul>
+      <li>
+        Comprehensive feature set.
+      </li>
+      <li>
+        Excellent UI.
+      </li>
+      <li>
+        Build with Docker, Heroku buildpacks, or Paketo buildpacks.
+      </li>
+      <li>
+        Deploy to US Central or Europe West.
+      </li>
+      <li>
+        Organize infra into projects. Group web service, jobs,
+        Postgres, and secrets in the project. Deploy project via
+        staging-production pipeline.
+      </li>
+      <li>
+        Managed Postgres.
+      </li>
+      <li>
+        HA Postgres databases.
+      </li>
+      <li>
+        Hourly Postgres backups.
+      </li>
+      <li>
+        Postgres read replicas.
+      </li>
+      <li>
+        Postgres can be networked to be hidden from the internet.
+      </li>
+    </ul>
+    <p>
+      Cons:
+    </p>
+    <ul>
+      <li>
+        Performance doesn't seem as good as Fly, Heroku, Railway, or Render.
+      </li>
+      <li>
+        I was not able to get HTTP/2 working.
+      </li>
+      <li>
+        I could get <code>heroku/buildpacks:20</code> working, but not
+        <code>heroku/builder:22</code>.
+      </li>
+      <li>
+        Unlike Fly and Render, no built-in DDoS protection.
+      </li>
+      <li>
+        Unlike Fly, not SOC2 certified.
+      </li>
+      <li>
+        Single region deployments.
       </li>
     </ul>
   </section>
@@ -288,10 +364,10 @@ end</code>
 
   <section id="render">
     <h2>render</h2>
-    <p>Render supports some key features that Heroku does not:</p>
+    <p>Pros:</p>
     <ul>
       <li>
-        HTTP/2 support
+        Managed Postgres.
       </li>
       <li>
         <a href="https://render.com/docs/databases">IP access control on
@@ -300,6 +376,9 @@ end</code>
       <li>
         <a href="https://render.com/docs/ddos-protection">DDoS
           protection</a>
+      </li>
+      <li>
+        HTTP/2 support
       </li>
       <li>
         <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
