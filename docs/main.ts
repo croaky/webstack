@@ -3,7 +3,7 @@ import "https://deno.land/x/dotenv/load.ts";
 import AsciiTable, { AsciiAlign } from "https://deno.land/x/ascii_table/mod.ts";
 
 const resp = await fetch(
-  "https://api.checklyhq.com/v1/reporting?presetWindow=last7Days&deactivated=false",
+  "https://api.checklyhq.com/v1/reporting?presetWindow=last7Days",
   {
     method: "GET",
     headers: {
@@ -14,21 +14,25 @@ const resp = await fetch(
   },
 );
 const data = await resp.json();
-
-const table = new AsciiTable("API checks last 7 days");
-table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
-table.setAlign(1, AsciiAlign.RIGHT);
+var sorted = [];
 
 for (let i = 0; i < data.length; i++) {
   if (data[i]["deactivated"] === false) {
-    table.addRow(
+    sorted.push([
       data[i]["name"],
       data[i]["aggregate"]["successRatio"].toFixed(2),
       data[i]["aggregate"]["avg"],
       data[i]["aggregate"]["p95"],
-    );
+    ]);
   }
 }
+
+sorted.sort((a, b) => a[2] - b[2]);
+
+const table = new AsciiTable("API checks last 7 days");
+table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
+table.setAlign(1, AsciiAlign.RIGHT);
+sorted.forEach((row) => table.addRow(row));
 
 const tmplHTML = await Deno.readTextFile("./docs/template.html");
 const genHTML = tmplHTML.replace("REPLACE_DASHBOARD_MAIN", table.toString());
