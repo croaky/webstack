@@ -7,15 +7,13 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
 	"os"
-	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// Command line flags.
+// command line flags
 var (
 	dsn  = flag.String("dsn", "", "datasource name")
 	addr = flag.String("addr", ":8080", "bind address")
@@ -24,9 +22,6 @@ var (
 var db *sql.DB
 
 func main() {
-	log.SetFlags(0)
-	rand.Seed(time.Now().UnixNano())
-
 	if err := run(context.Background()); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -49,8 +44,6 @@ func run(ctx context.Context) (err error) {
 		return fmt.Errorf("open db: %w", err)
 	}
 	defer db.Close()
-
-	log.Printf("database opened at %s", *dsn)
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

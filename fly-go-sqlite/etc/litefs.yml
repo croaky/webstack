@@ -5,7 +5,7 @@ mount-dir: "/data"
 data-dir: "/mnt/data"
 
 # Execute this subprocess once LiteFS connects to the cluster.
-exec: "litefs-example -dsn /data/db"
+exec: "fly-go-sqlite -dsn /data/db"
 
 # These environment variables will be available in your Fly.io application.
 # You must specify "experiement.enable_consul" for FLY_CONSUL_URL to be available.

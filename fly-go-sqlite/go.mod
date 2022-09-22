@@ -1,4 +1,4 @@
-module github.com/superfly/litefs-example
+module github.com/croaky/webstack/fly-go-sqlite
 
 go 1.19
 

@@ -3,15 +3,15 @@ FROM flyio/litefs:pr-109 AS litefs
 
 # Build our application using a Go builder.
 FROM golang:1.19 AS builder
-WORKDIR /src/litefs-example
+WORKDIR /src/fly-go-sqlite
 COPY . .
-RUN go build -ldflags "-s -w -extldflags '-static'" -tags osusergo,netgo -o /usr/local/bin/litefs-example ./cmd/litefs-example
+RUN go build -ldflags "-s -w -extldflags '-static'" -tags osusergo,netgo -o /usr/local/bin/fly-go-sqlite .
 
 # Our final Docker image stage starts here.
 FROM alpine
 
 # Copy binaries from the previous build stages.
-COPY --from=builder /usr/local/bin/litefs-example /usr/local/bin/litefs-example
+COPY --from=builder /usr/local/bin/fly-go-sqlite /usr/local/bin/fly-go-sqlite
 COPY --from=litefs /usr/local/bin/litefs /usr/local/bin/litefs
 
 # Copy our LiteFS configuration.
@@ -23,5 +23,5 @@ RUN apk add bash curl fuse sqlite
 # Ensure our mount & data directories exists before mounting with LiteFS.
 RUN mkdir -p /data /mnt/data
 
-# Run LiteFS as the entrypoint so it can execute "litefs-example" as a subprocess.
+# Run LiteFS as the entrypoint so it can execute "fly-go-sqlite" as a subprocess.
 ENTRYPOINT "litefs"
