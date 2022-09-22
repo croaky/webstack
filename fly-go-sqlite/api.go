@@ -11,11 +11,9 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var dsn = flag.String("dsn", "", "datasource name")
-var db *sql.DB
-
 func main() {
 	// flag
+	dsn := flag.String("dsn", "", "datasource name")
 	flag.Parse()
 	if *dsn == "" {
 		log.Fatalf("dsn required")
