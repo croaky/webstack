@@ -26,13 +26,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
+	defer db.Close()
 
-	_, err = db.Query("SELECT 1")
+	rows, err := db.Query("SELECT 1")
 	if err != nil {
 		log.Fatal(err)
 		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
+	defer rows.Close()
 
 	fmt.Fprintf(w, "{\"status\":\"ok\"}")
 }
