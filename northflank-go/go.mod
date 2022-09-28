@@ -1,4 +1,4 @@
-module github.com/croaky/webstack/northflank-go
+module api
 
 go 1.18
 
