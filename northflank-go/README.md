@@ -11,35 +11,35 @@ Develop:
 go run api.go
 ```
 
-Set up Northflank project and service:
+Create Northflank project:
 
 * [Create a project](https://northflank.com/docs/v1/application/getting-started/create-a-project)
 * Choose a name and region "US - Central" or "Europe - West".
-* Choose "Add new service".
-* Choose "Build: Build a Git repo and store image".
-* Choose GitHub repository and `main` branch.
-* For build options, choose "Buildpack" > `heroku/buildpacks:20` and
-  "Build context" of `/northflank-go`.
-* In "Advanced", "CMD override" to `go run api.go`.
-* Click "Create service".
 
 Add Postgres database:
 
 * Click "Addons" > "Create new addon" > "PostgreSQL".
 * Give it a name, choose Postgres v 14.5.0.
-* Keep networking defaults: "Deploy with TLS" enabled
-  and "Publicly accessible" disabled.
+* Keep networking defaults: "Deploy with TLS" enabled and "Publicly accessible" disabled.
 * Click "Create addon".
 
-Connect Postgres to service via secret group:
+Expose Postgres connection to project via secret group:
 
-* Click "Connection details" > "Link to secret groups" >
-  "Create a new secret group".
+* Click "Connection details" > "Link to secret groups" > "Create a new secret group".
 * Give it a name.
 * Within "Linked addons", click "Show addons".
 * Click "Configure" next to the Postgres database.
 * Click `POSTGRES_URI` > "Aliases" and enter `DATABASE_URL`.
 * Click "Create secret group".
+
+Create new service:
+
+* Choose "Add new service".
+* Choose "Build: Build a Git repo and store image".
+* Choose GitHub repository and `main` branch.
+* For build options, choose "Buildpack" > `heroku/buildpacks:20` and "Build context" of `/northflank-go`.
+* In "Advanced", "CMD override" to `go run api.go`.
+* Click "Create service".
 
 ## Editorial
 
