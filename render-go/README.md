@@ -6,7 +6,7 @@ See example deployed at
 ## Setup
 
 ```
-go run api.go
+go run main.go
 ```
 
 Postgres:
