@@ -47,7 +47,7 @@ func Headers(next http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		w.Header().Add("Accept", "application/json")
-		w.Header().Add("Access-Control-Allow-Methods", "OPTIONS,POST")
+		w.Header().Add("Access-Control-Allow-Methods", "OPTIONS,GET,POST")
 		w.Header().Add("Content-Type", "application/json")
 		w.Header().Add("X-Content-Type-Options", "nosniff")
 		w.Header().Add("X-Frame-Options", "DENY")
@@ -55,10 +55,4 @@ func Headers(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r.WithContext(ctx))
 	}
 	return http.HandlerFunc(fn)
-}
-
-func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
-	var col int
-	s.db.QueryRow(r.Context(), "SELECT 1").Scan(&col)
-	fmt.Fprintf(w, "{\"status\":\"ok\"}")
 }
