@@ -11,8 +11,8 @@ import (
 )
 
 func env(key string, fallback string) string {
-	val := os.Getenv(key)
-	if val == "" {
+	val, ok := os.LookupEnv(key)
+	if !ok {
 		val = fallback
 	}
 	return val
@@ -26,7 +26,9 @@ type Server struct {
 func NewServer(ctx context.Context, db *pgxpool.Pool) *Server {
 	gin.SetMode(gin.ReleaseMode)
 	rt := gin.New()
+	rt.UseH2C = true
 
+	// middleware
 	rt.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		return fmt.Sprintf("%s %d %s %s\n",
 			fmt.Sprintf("% 4dms", param.Latency.Milliseconds()),
@@ -37,7 +39,21 @@ func NewServer(ctx context.Context, db *pgxpool.Pool) *Server {
 		)
 	}))
 	rt.Use(gin.Recovery())
+	rt.Use(func(c *gin.Context) {
+		c.Header("Accept", "application/json")
+		c.Header("Access-Control-Allow-Methods", "OPTIONS,GET,POST")
+		c.Header("Content-Type", "application/json")
+		c.Header("X-Content-Type-Options", "nosniff")
+		c.Header("X-Frame-Options", "DENY")
+		c.Header("X-XSS-Protection", "1; mode=block")
+	})
 
+	// OPTIONS catch-all for pre-flight requests
+	rt.OPTIONS("/*all", func(c *gin.Context) {
+		c.String(204, "")
+	})
+
+	// routes
 	rt.GET("/", func(c *gin.Context) {
 		var col int
 		db.QueryRow(ctx, "SELECT 1").Scan(&col)
