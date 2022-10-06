@@ -43,3 +43,6 @@ Neon:
   idles after 5m of inactivity.
 * `sslmode=verify-full` works.
 * Normal Postgres, uses version 14.5 as of Oct 6, 2022.
+* Latency is suffering from Vercel function being in Washington DC
+  and database in Oregon. Not currently possible to choose a region
+  for the Neon database.
