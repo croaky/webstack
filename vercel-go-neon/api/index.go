@@ -1,40 +1,41 @@
 package api
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	_ "github.com/lib/pq"
+	"github.com/jackc/pgx/v4"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	dbUrl, ok := os.LookupEnv("DATABASE_URL")
+	dsn, ok := os.LookupEnv("DATABASE_URL")
 	if !ok {
 		log.Fatal("DATABASE_URL not set")
 		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
 
-	db, err := sql.Open("postgres", dbUrl)
+	ctx := context.Background()
+	db, err := pgx.Connect(ctx, dsn)
+	defer db.Close(ctx)
 	if err != nil {
 		log.Fatal(err)
 		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
-	defer db.Close()
 
-	rows, err := db.Query("SELECT 1")
+	var col int
+	err = db.QueryRow(ctx, "SELECT 1").Scan(&col)
 	if err != nil {
 		log.Fatal(err)
 		fmt.Fprintf(w, "{\"status\":\"internal server error\"}")
 		return
 	}
-	defer rows.Close()
 
 	fmt.Fprintf(w, "{\"status\":\"ok\"}")
 }
