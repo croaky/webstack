@@ -1,8 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@planetscale/database": "^1.4.0",
-    "vercel": "^28.4.8"
+    "@planetscale/database": "^1.4.0"
   },
   "devDependencies": {
     "typescript": "^4.8.4"

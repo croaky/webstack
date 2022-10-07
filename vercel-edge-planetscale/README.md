@@ -42,7 +42,8 @@ Set up Vercel:
 Deploy:
 
 ```bash
-npm install
+npm i -g vercel
+npm i
 vercel deploy
 vercel --prod
 ```
