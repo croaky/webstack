@@ -59,6 +59,7 @@
     <a href="#northflank">northflank</a>
     <a href="#railway">railway</a>
     <a href="#render">render</a>
+    <a href="#vercel">vercel</a>
   </nav>
 
   <main id="overview">
@@ -83,7 +84,7 @@ REPLACE_DASHBOARD_MAIN</code>
     </figure>
 
     <p>
-      <a href="https://heroku.com">Heroku</a> and "New Herokus":
+      I'm interested in comparing <a href="https://heroku.com">Heroku</a> and "New Herokus":
     </p>
     <ul>
       <li><a href="https://fly.io">Fly.io</a></li>
@@ -96,7 +97,7 @@ REPLACE_DASHBOARD_MAIN</code>
       Each stack serves a healthcheck-style HTTP API endpoint that executes a
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{"status":"ok"}</code>.
-      Each stack uses a lightweight router, database connection pool,
+      Each stack uses a lightweight router,
       and SQL database driver (no ORM). Example:
     </p>
 
@@ -116,6 +117,39 @@ get "/" do
   {status: "ok"}.to_json
 end</code>
     </pre>
+
+    <p>
+      The traditional (serverful?) stacks use a database connection pool.
+      The serverless stacks vary:
+    </p>
+
+    <ul>
+      <li>
+        <a href="https://neon.tech">Neon</a> serverless Postgres
+        uses a traditional TCP connection from
+        Fly.io and
+        <a
+          href="https://vercel.com/docs/concepts/functions/serverless-functions">single
+          region Vercel serverless functions</a>. The Checkly checks run every 2 minutes in
+        order to prevent the Neon database from idling (which happens after 5
+        minutes of inactivity).
+      </li>
+      <li>
+        <a href="https://cockroachlabs.cloud/">Cockroach</a> serverless
+        Postgres-compatible uses a traditional TCP connection from single region
+        Vercel serverless functions the same as Neon.
+      </li>
+      <li>
+        <a href="https://planetscale.com">PlanetScale</a> serverless MySQL
+        uses an HTTP connection via their
+        <a href="https://planetscale.com/blog/introducing-the-planetscale-serverless-driver-for-javascript">serverless
+          driver for JavaScript</a>
+        and is executed from
+        <a
+          href="https://vercel.com/docs/concepts/functions/edge-functions">Vercel's
+          global edge functions</a>.
+      </li>
+    </ul>
   </main>
 
   <section id="heroku">
@@ -401,6 +435,60 @@ end</code>
       </li>
       <li>
         HA Postgres databases are not available.
+      </li>
+    </ul>
+  </section>
+
+  <section id="vercel">
+    <h2>vercel</h2>
+    <p>Pros:</p>
+    <ul>
+      <li>Innovating on cloud and application architecture.</li>
+      <li>Excellent GitHub pull request integration, preview deploys.</li>
+      <li>Fast builds</li>
+      <li>Great UI</li>
+      <li>Vercel serverless functions with Cockroach has surprisngly low latency</li>
+      <li>
+        With new PlanetScale driver, possible to connect to serverless SQL
+        database over HTTP from Vercel's global edge network functions.
+      </li>
+    </ul>
+    <p>Cons:</p>
+    <ul>
+      <li>
+        Connecting to a relational database, even modern cloud SQL databases
+        like Cockroach, Neon, and PlanetScale, from serverless functions is a
+        work in progress. <a href="https://fauna.com">Fauna</a> seems like it
+        was the first to figure out you need to offer an HTTP API to your
+        database in a serverless architecture and now some editions of AWS
+        Aurora offer an HTTP API.
+        <a
+          href="https://planetscale.com/blog/introducing-the-planetscale-serverless-driver-for-javascript">PlanetScale
+          is rolling out a beta JavaScript driver</a> that connects over HTTP
+        to an awesome-sounding global router that then "backhauls" over
+        long-held connection pools within their network.
+      </li>
+      <li>
+        I would prefer to use "real Postgres" than Cockroach. My day job app
+        uses Postgres functions and triggers, which are unsupported in
+        Cockroach.
+      </li>
+      <li>
+         PlanetScale is lovely, but I would prefer to use Postgres than MySQL.
+         PlanetScale's HTTP API and global routing, like Fauna before it,
+         feel like the natural next necessary step in this architecture.
+         Neon and Cockroach aren't at this step yet.
+      </li>
+      <li>
+        I would prefer to use Go, not JavaScript, in my server-side (whether
+        serverful, or serverless) code. The moment I added the `vercel` package
+        to the monorepo, I started getting security vulnerability alerts in
+        GitHub. It feels messy and unsafe working on top of Node.
+        PlanetScale only offers a JavaScript driver as of early October 2022.
+        The Vercel edge runtime is built on the V8 JavaScript and WebAssembly
+        engine so theoretically, some day you could write Go functions that
+        compile to WebAssembly on Vercel's edge network, but that feels a long
+        way off.
       </li>
     </ul>
   </section>
