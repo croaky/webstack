@@ -214,13 +214,14 @@ end</code>
         The CLI is fantastic.
       </li>
       <li>
-        <a
-          href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
-          Postgres read replicas</a>
-        appear to provide the best read performance for my global tests.
+        HA Postgres databases are available.
       </li>
       <li>
-        HA Postgres databases are available.
+        Multi-region <a
+          href="https://fly.io/blog/all-in-on-sqlite-litestream/">Fly +
+          SQLite</a> is easily the best performing stack. I'm not sure I have
+        any real-world apps I'd design to fit this architecture but it's pretty
+        damn cool!
       </li>
       <li>
         A <code>--remote-only</code> option builds on a remote Docker builder
@@ -236,7 +237,7 @@ end</code>
       </li>
     </ul>
     <p>
-      Pro and con?
+      Pros and cons?
     </p>
     <ul>
       <li>
@@ -248,6 +249,14 @@ end</code>
         This is not as ergonomic as Render's or Railway's deploys
         but maybe there's a nice security benefit to more intentionally securing
         a secret within the GitHub repo than the OAuth permissions dance?
+      </li>
+      <li>
+        <a
+          href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
+          Postgres read replicas</a>
+        initially provided the best read performance for my global tests but
+        have been consistently beat by the single region, single Postgres
+        version. Curious! Need to dig in more.
       </li>
     </ul>
     <p>
