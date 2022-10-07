@@ -47,7 +47,10 @@ Little things I came across:
 
 * I could get <code>heroku/buildpacks:20</code> working, but not
   <code>heroku/builder:22</code>.
-* I was not able to get HTTP/2 working, had to stay on HTTP/1.1.
+* HTTP/2 works for the app from browser to Northflank's routing layer.
+  I had to use the default HTTP/1.1 option in Northflank, which confused me
+  but is specific to Go's HTTP package and what you'd need to do to get TLS
+  working from Northflank's router to your app process.
 * Within "Services" > "Builds", when I click "Start build",
   I'm redirected to the "Commits" tab and no build seems to start.
 * I'm confused about how I set up pull request deploys and staging-production
