@@ -480,6 +480,11 @@ end</code>
          Neon and Cockroach aren't at this step yet.
       </li>
       <li>
+        Neon is "real Postgres", but separates compute from storage in order
+        to support serverless features like "scale to zero". It's looking great
+        so far but is a beta product, unready for production workloads.
+      </li>
+      <li>
         I would prefer to use Go, not JavaScript, in my server-side (whether
         serverful, or serverless) code. The moment I added the `vercel` package
         to the monorepo, I started getting security vulnerability alerts in
