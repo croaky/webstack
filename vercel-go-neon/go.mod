@@ -1,6 +1,6 @@
 module api
 
-go 1.19
+go 1.18
 
 require github.com/jackc/pgx/v4 v4.17.2
 
