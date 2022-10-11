@@ -98,7 +98,9 @@ REPLACE_DASHBOARD_MAIN</code>
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{"status":"ok"}</code>.
       Each stack uses a lightweight router,
-      and SQL database driver (no ORM). Example:
+      a SQL database driver (no ORM), and
+      usually database connection pooling.
+      Example:
     </p>
 
     <pre>
@@ -119,8 +121,7 @@ end</code>
     </pre>
 
     <p>
-      The traditional (serverful?) stacks use a database connection pool.
-      The serverless stacks vary:
+      The serverless stacks vary a little more:
     </p>
 
     <ul>
@@ -418,7 +419,7 @@ end</code>
           protection</a>
       </li>
       <li>
-        HTTP/2 support
+        HTTP/3 (!) and HTTP/2 support.
       </li>
       <li>
         <a href="https://render.com/docs/deploys#zero-downtime-deploys">Health checks</a>
