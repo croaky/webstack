@@ -84,13 +84,35 @@ REPLACE_DASHBOARD_MAIN</code>
     </figure>
 
     <p>
-      I'm interested in comparing <a href="https://heroku.com">Heroku</a> and "New Herokus":
+      These stacks are deployed to:
     </p>
     <ul>
+      <li><a href="https://heroku.com">Heroku</a></li>
       <li><a href="https://fly.io">Fly.io</a></li>
       <li><a href="https://northflank.com/">Northflank</a></li>
       <li><a href="https://railway.app">Railway</a></li>
       <li><a href="https://render.com">Render</a></li>
+      <li>
+        <a href="https://vercel.com">Vercel</a> global edge functions
+        and single-region serverless functions
+      </li>
+    </ul>
+
+    <p>
+      The databases used are:
+    </p>
+    <ul>
+      <li>Postgres on Heroku, Fly, Northflank, Railway, Render</li>
+      <li>SQLite on Fly</li>
+      <li>
+        <a href="https://neon.tech">Neon</a> serverless Postgres
+      </li>
+      <li>
+        <a href="https://cockroachlabs.cloud/">Cockroach</a> serverless Postgres
+      </li>
+      <li>
+        <a href="https://planetscale.com">PlanetScale</a> serverless MySQL
+      </li>
     </ul>
 
     <p>
@@ -98,8 +120,9 @@ REPLACE_DASHBOARD_MAIN</code>
       <code>SELECT 1</code> to a SQL database
       and responds with JSON <code>{"status":"ok"}</code>.
       Each stack uses a lightweight router,
-      a SQL database driver (no ORM), and
-      usually database connection pooling.
+      a SQL database driver (no ORM),
+      and a database connection (often pooled).
+      All stacks are in Go (except Vercel edge, written in TypeScript).
       Example:
     </p>
 
@@ -150,25 +173,22 @@ func main() {
     </pre>
 
     <p>
-      The serverless stacks vary a little more:
+      Connecting to databases from serverless stacks vary a little:
     </p>
-
     <ul>
       <li>
-        <a href="https://neon.tech">Neon</a> serverless Postgres
-        uses a traditional TCP connection from Fly.io and
+        Neon serverless Postgres uses a traditional TCP connection from Fly.io
+        and
         <a
           href="https://vercel.com/docs/concepts/functions/serverless-functions">single
           region Vercel serverless functions</a>.
       </li>
       <li>
-        <a href="https://cockroachlabs.cloud/">Cockroach</a> serverless
-        Postgres also uses a traditional TCP connection from single region
-        Vercel serverless functions.
+        Cockroach serverless Postgres also uses a traditional TCP connection
+        from single region Vercel serverless functions.
       </li>
       <li>
-        <a href="https://planetscale.com">PlanetScale</a> serverless MySQL
-        uses an HTTP connection via their
+        PlanetScale serverless MySQL uses an HTTP connection via their
         <a href="https://planetscale.com/blog/introducing-the-planetscale-serverless-driver-for-javascript">serverless
           driver for JavaScript</a>
         and is executed from
