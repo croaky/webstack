@@ -78,7 +78,7 @@
 REPLACE_DASHBOARD_MAIN</code>
       </pre>
       <figcaption>
-        API checks every 10 minutes via <a href="https://www.checklyhq.com/">Checkly</a>
+        API checks every 2 minutes via <a href="https://www.checklyhq.com/">Checkly</a>
         from N. California, Montreal, Ireland, Stockholm, Sydney
       </figcaption>
     </figure>
@@ -131,14 +131,12 @@ end</code>
         Fly.io and
         <a
           href="https://vercel.com/docs/concepts/functions/serverless-functions">single
-          region Vercel serverless functions</a>. The Checkly checks run every 2 minutes in
-        order to prevent the Neon database from idling (which happens after 5
-        minutes of inactivity).
+          region Vercel serverless functions</a>.
       </li>
       <li>
         <a href="https://cockroachlabs.cloud/">Cockroach</a> serverless
-        Postgres-compatible uses a traditional TCP connection from single region
-        Vercel serverless functions the same as Neon.
+        Postgres also uses a traditional TCP connection from single region
+        Vercel serverless functions.
       </li>
       <li>
         <a href="https://planetscale.com">PlanetScale</a> serverless MySQL
@@ -274,9 +272,9 @@ end</code>
         There is more info in the CLI that could be in the UI.
       </li>
       <li>
-        The <code>--nixpacks</code> flag can not currently be used with the
-        <code>--remote-only</code> flag. Meaning, to use Nixpacks, you have to
-        have Docker installed on your laptop.
+        The <code>--nixpacks</code> flag can not currently be used with
+        <code>fly deploy --remote-only</code> (meaning, to use Nixpacks, you have to
+        have Docker installed on your laptop) or <code>fly launch</code>.
       </li>
     </ul>
   </section>
@@ -469,22 +467,18 @@ end</code>
         Go 1.19 not supported 2+ months after release.
       </li>
       <li>
-        Connecting to a relational database, even modern cloud SQL databases
-        like Cockroach, Neon, and PlanetScale, from serverless functions is a
-        work in progress. <a href="https://fauna.com">Fauna</a> seems like it
-        was the first to figure out you need to offer an HTTP API to your
-        database in a serverless architecture and now some editions of AWS
-        Aurora offer an HTTP API.
+        Connecting to relational databases (even modern cloud offerings from
+        Cockroach, Neon, PlanetScale, and Supabase) from serverless functions is a
+        work in progress.
         <a
           href="https://planetscale.com/blog/introducing-the-planetscale-serverless-driver-for-javascript">PlanetScale
           is rolling out a beta JavaScript driver</a> that connects over HTTP
-        to an awesome-sounding global router that then "backhauls" over
-        long-held connection pools within their network.
+        to a global router that backhauls over long-held connection pools within
+        their network.
       </li>
       <li>
-        I would prefer to use "real Postgres" than Cockroach. My day job app
-        uses Postgres functions and triggers, which are unsupported in
-        Cockroach.
+        Neither Cockroach nor Neon support <code>LISTEN/NOTIFY</code>. Cockroach
+        does not support Postgres functions and triggers.
       </li>
       <li>
          PlanetScale is lovely, but I would prefer to use Postgres than MySQL.
@@ -493,9 +487,9 @@ end</code>
          Neon and Cockroach aren't at this step yet.
       </li>
       <li>
-        Neon is "real Postgres", but separates compute from storage in order
-        to support serverless features like "scale to zero". It's looking great
-        so far but is a beta product, unready for production workloads.
+        Neon separates compute from storage in order to support serverless
+        features like "scale to zero". It's looking great so far but is a beta
+        product, unready for production workloads.
       </li>
       <li>
         I would prefer to use Go, not JavaScript, in my server-side (whether

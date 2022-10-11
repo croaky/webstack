@@ -1,4 +1,4 @@
-module github.com/croaky/webstack/fly-go-sqlite
+module server
 
 go 1.19
 
