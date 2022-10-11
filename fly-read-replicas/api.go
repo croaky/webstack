@@ -1,7 +1,7 @@
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"log"
 	"net"
@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"os"
 
-	_ "github.com/lib/pq"
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func main() {
@@ -42,14 +42,16 @@ func main() {
 	}
 
 	// db
-	db, err := sql.Open("postgres", dbUrl)
+	db, err := pgxpool.Connect(context.Background(), dbUrl)
+	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		db.Query("SELECT 1")
+		var col int
+		db.QueryRow(r.Context(), "SELECT 1").Scan(&col)
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintf(w, "{\"status\":\"ok\"}")
 	})
