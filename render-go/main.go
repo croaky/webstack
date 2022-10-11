@@ -75,10 +75,10 @@ func main() {
 
 	// db
 	db, err := pgxpool.Connect(ctx, dbUrl)
+	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
 
 	// server
 	s := NewServer(ctx, db)

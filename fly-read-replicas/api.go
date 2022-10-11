@@ -14,13 +14,13 @@ import (
 
 func main() {
 	// env
-	port := os.Getenv("PORT")
-	if port == "" {
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
 		port = "8080"
 	}
-	dbUrl := os.Getenv("DATABASE_URL")
-	if dbUrl == "" {
-		dbUrl = "postgres://postgres:postgres@localhost:5432/webstack_dev"
+	dbUrl, ok := os.LookupEnv("DATABASE_URL")
+	if !ok {
+		dbUrl = "postgres:///webstack_dev"
 	}
 	primary := os.Getenv("PRIMARY_REGION")
 	current := os.Getenv("FLY_REGION")

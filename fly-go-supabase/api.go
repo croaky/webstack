@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// env
-	port := os.Getenv("PORT")
-	if port == "" {
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
 		port = "8080"
 	}
-	dbUrl := os.Getenv("DATABASE_URL")
-	if dbUrl == "" {
+	dbUrl, ok := os.LookupEnv("DATABASE_URL")
+	if !ok {
 		dbUrl = "postgres:///webstack_dev"
 	}
 
