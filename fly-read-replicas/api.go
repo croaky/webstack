@@ -43,10 +43,10 @@ func main() {
 
 	// db
 	db, err := pgxpool.Connect(context.Background(), dbUrl)
-	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer db.Close()
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

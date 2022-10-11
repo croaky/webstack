@@ -23,11 +23,11 @@ func main() {
 
 	// db
 	db, err := pgxpool.Connect(context.Background(), dbURL)
-	defer db.Close()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
+	defer db.Close()
 
 	// routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
