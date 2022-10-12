@@ -344,9 +344,14 @@ func main() {
       <li>
         Multi-region <a
           href="https://fly.io/blog/all-in-on-sqlite-litestream/">Fly +
-          SQLite</a> is easily the best performing stack. I'm not sure I have
-        any real-world apps I'd design to fit this architecture but it's pretty
-        darn cool!
+          SQLite</a> is the second-best performing stack. I'm not sure what
+        kind of real-world apps I'd design to fit this architecture.
+      </li>
+      <li>
+        <a
+          href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
+          Postgres read replicas</a>
+        performs even better than multi-region SQLite.
       </li>
       <li>
         A <code>--remote-only</code> option builds on a remote Docker builder
@@ -357,8 +362,7 @@ func main() {
         They support a few Docker or buildpack options including Railway's
         <a href="https://docs.railway.app/deploy/builds">Nixpacks</a>.
         Using the <code>--nixpacks</code> flag, I've seen image sizes
-        between 30MB-90MB with deploys finishing in ~40 seconds, which feels
-        acceptable.
+        between 30MB-90MB with deploys finishing in ~40 seconds.
       </li>
     </ul>
     <p>
@@ -375,14 +379,6 @@ func main() {
         but maybe there's a nice security benefit to more intentionally securing
         a secret within the GitHub repo than the OAuth permissions dance?
       </li>
-      <li>
-        <a
-          href="https://fly.io/docs/getting-started/multi-region-databases/">Multi-region
-          Postgres read replicas</a>
-        provides the best read performance of any Postgres option
-        but my program crashed Postgres, requires extra monitoring and
-        operating.
-      </li>
     </ul>
     <p>
       Cons:
@@ -391,7 +387,8 @@ func main() {
       <li>
         <a
           href="https://fly.io/docs/rails/getting-started/migrate-from-heroku/#databases">Fly's
-          Postgres databases are not managed</a>.
+          Postgres databases are not managed, requires extra monitoring and
+          operating work.
       </li>
       <li>
         The web UI is not as aesthetic as Railway, Heroku, or Render.
