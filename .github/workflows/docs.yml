@@ -1,4 +1,4 @@
-name: daily publish
+name: docs
 
 on:
   schedule:
