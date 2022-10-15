@@ -1,0 +1,27 @@
+name: planetscale
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every day at midnight UTC
+
+env:
+  DATABASE_URL: ${{ secrets.PLANETSCALE_DATABASE_URL }}
+
+jobs:
+  wake:
+    name: wake
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Write a row to PlanetScale database
+        run: |
+          cd vercel-edge-planetscale
+          npm i
+          node lib/wake.js

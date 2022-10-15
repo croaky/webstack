@@ -1,7 +1,10 @@
 {
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@planetscale/database": "^1.4.0"
+    "@planetscale/database": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.2.10"
   },
   "devDependencies": {
     "typescript": "^4.8.4"
