@@ -10,7 +10,7 @@ const db = new Client({
 
 export default async function handler(_req: Request) {
   const conn = db.connection();
-  await conn.execute("SELECT 1");
+  await conn.execute("INSERT INTO checks (at) VALUES (now())");
 
   return new Response('{"status":"ok"}', {
     headers: {
