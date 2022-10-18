@@ -12,16 +12,6 @@ jobs:
     name: wake
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Write a row to PlanetScale database
-        run: |
-          cd vercel-edge-planetscale
-          npm i
-          node lib/wake.js
+      - run: cd vercel-edge-planetscale && npm i && node lib/wake.js
