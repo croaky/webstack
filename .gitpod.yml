@@ -1,1 +1,2 @@
-image: postgres:latest
+image:
+  file: .gitpod.Dockerfile
