@@ -31,5 +31,5 @@ Set up Supabase:
 Add connection string to Fly:
 
 ```bash
-fly secrets set DATABASE_URL="<paste>"
+fly secrets set DATABASE_URL="PASTE"
 ```
