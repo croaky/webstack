@@ -1,0 +1,8 @@
+<script src="https://unpkg.com/htmx.org@1.8.2"></script>
+
+<button hx-post="/clicked" hx-target="#version" hx-swap="innerHTML">
+  Click to show running Postgres version
+</button>
+
+<div id="version">
+</div>
