@@ -1,10 +1,5 @@
 # Railway Go
 
-See example deployed at
-<https://railway-go.statusok.com>.
-
-## Setup
-
 ```
 go run main.go
 ```
