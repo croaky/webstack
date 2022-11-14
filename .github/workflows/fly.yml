@@ -8,18 +8,26 @@ env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
-  deploy-fly-go:
-    name: Deploy fly-go
+  deploy-fly-go-cockroach:
+    name: Deploy fly-go-cockroach
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: cd fly-go && flyctl deploy --remote-only --nixpacks
+      - run: cd fly-go-cockroach && flyctl deploy --remote-only --nixpacks
 
-  deploy-fly-read-replicas:
-    name: Deploy fly-read-replicas
+  deploy-fly-go-crunchy-bridge:
+    name: Deploy fly-go-crunchy-bridge
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: cd fly-read-replicas && flyctl deploy --remote-only --nixpacks
+      - run: cd fly-go-crunchy-bridge && flyctl deploy --remote-only --nixpacks
+
+  deploy-fly-go-neon:
+    name: Deploy fly-go-neon
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: cd fly-go-neon && flyctl deploy --remote-only --nixpacks
