@@ -36,11 +36,14 @@ sorted.push(["fly-go-supabase", 99.99, 214, 546]);
 sorted.push(["heroku-go-postgres", (100.0).toFixed(2), 298, 823]);
 sorted.push(["render-go-postgres", 99.99, 494, 622]);
 
+// sort by p95 response time as third most important
+sorted.sort((a, b) => a[2] - b[2]);
+
 // sort by avg response time as second most important
 sorted.sort((a, b) => a[2] - b[2]);
 
 // sort by uptime as most important
-sorted.sort((a, b) => a[1] - b[1]);
+sorted.sort((a, b) => b[1] - a[1]);
 
 const table = new AsciiTable("API checks last 7 days");
 table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
