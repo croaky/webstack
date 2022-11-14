@@ -32,11 +32,19 @@ sorted.push(["fly-go-planetscale", 99.99, 207, 523]);
 sorted.push(["fly-go-postgres-read-replicas", 99.99, 115, 434]);
 sorted.push(["fly-go-sqlite", 99.99, 125, 392]);
 sorted.push(["fly-go-supabase", 99.99, 214, 546]);
-sorted.push(["heroku-go-postgres", (100.0).toFixed(2), 298, 823]);
+sorted.push(["heroku-go-postgres", 99.99, 303, 829]);
 sorted.push(["render-go-postgres", 99.99, 494, 622]);
 
-// sort by avg response time
+-(
+  // sort by p95 response time as third most important
+  sorted.sort((a, b) => a[3] - b[3])
+);
+
+// sort by avg response time as second most important
 sorted.sort((a, b) => a[2] - b[2]);
+
+// sort by uptime as most important
+sorted.sort((a, b) => b[1] - a[1]);
 
 const table = new AsciiTable("API checks last 7 days");
 table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
