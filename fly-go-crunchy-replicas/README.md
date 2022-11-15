@@ -62,14 +62,14 @@ fly secrets set AUSTRALIA_URL="<sydney-connection-string>"
 fly secrets set CANADA_URL="<toronto-connection-string>"
 ```
 
-Scale 1 instance per region:
-
-```bash
-fly autoscale set min=4 max=4
-```
-
 Deploy:
 
 ```bash
 fly deploy --remote-only
+```
+
+Scale 1 instance per region:
+
+```bash
+fly autoscale set min=4 max=4
 ```

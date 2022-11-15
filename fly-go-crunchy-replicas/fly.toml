@@ -1,6 +1,6 @@
-# fly.toml file generated for webstack-crunchy-replicas on 2022-11-14T20:20:42-05:00
+# fly.toml file generated for webstack-go-crunchy-replicas on 2022-11-14T20:45:53-05:00
 
-app = "webstack-crunchy-replicas"
+app = "webstack-go-crunchy-replicas"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
