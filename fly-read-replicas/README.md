@@ -42,7 +42,8 @@ Create the regions where the read replicas will go:
 fly regions add ams lhr syd yul
 ```
 
-Create read replicas in those regions:
+Create [read replicas](https://fly.io/docs/getting-started/multi-region-databases/#connect-to-regional-replicas)
+in those regions:
 
 ```bash
 fly volumes create pg_data -a webstack-read-replicas-db --size 1 --region ams

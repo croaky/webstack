@@ -26,7 +26,6 @@ func main() {
 	current := os.Getenv("FLY_REGION")
 
 	// if not in primary region...
-	// https://fly.io/docs/getting-started/multi-region-databases/#connect-to-regional-replicas
 	if primary != "" && current != "" && primary != current {
 		u, err := url.Parse(dbUrl)
 		if err != nil {
