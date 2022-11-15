@@ -181,12 +181,12 @@ REPLACE_DASHBOARD_MAIN</code>
     </p>
     <ul>
       <li>Postgres on Heroku, Fly, Northflank, Railway, Render</li>
-      <li>SQLite on Fly</li>
-      <li><a href="https://cockroachlabs.cloud/">Cockroach</a> serverless Postgres</li>
       <li><a href="https://crunchybridge.com/">Crunchy Bridge</a> Postgres</li>
+      <li><a href="https://supabase.com/">Supabase</a> Postgres</li>
+      <li><a href="https://cockroachlabs.cloud/">Cockroach</a> serverless Postgres</li>
       <li><a href="https://neon.tech">Neon</a> serverless Postgres</li>
+      <li>SQLite on Fly</li>
       <li><a href="https://planetscale.com">PlanetScale</a> serverless MySQL</li>
-      <li><a href="https://supabase.com/">Supabase</a> Postgre</li>
     </ul>
 
     <p>
@@ -196,7 +196,7 @@ REPLACE_DASHBOARD_MAIN</code>
       Each stack uses a lightweight router,
       a SQL database driver (no ORM),
       and a database connection (often pooled).
-      All stacks are written in Go (except Vercel edge, written in TypeScript).
+      Most stacks are written in Go.
       Example:
     </p>
 
@@ -247,9 +247,18 @@ func main() {
     </pre>
 
     <p>
-      Connecting to databases from serverless stacks vary a little:
+      Connecting to databases vary a little:
     </p>
     <ul>
+      <li>
+        Neon, Crunchy Bridge, and Supabase all offer connection pooling via PgBouncer, which I've enabled.
+        See <a href="https://neon.tech/docs/get-started-with-neon/connection-pooling/">Neon docs</a>,
+        <a href="https://docs.crunchybridge.com/how-to/pgbouncer/">Crunchy Bridge docs</a>,
+        and <a href="https://supabase.com/blog/supabase-pgbouncer">Supabase docs</a>.
+        In Neon and Supabase, you enable it with a web UI toggle. In Crunchy
+        Bridge, you enable it by `psql`'ing into your cluster and running
+        <code>CREATE EXTENSION crunchy_pooler;</code>.
+      </li>
       <li>
         Neon serverless Postgres uses a traditional TCP connection from Fly.io
         and
