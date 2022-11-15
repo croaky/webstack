@@ -1,11 +1,8 @@
 # Railway Ruby
 
-See example deployed at
-<https://webstack-ruby.up.railway.app/>.
+Setup:
 
-## Setup
-
-```
+```bash
 bundle
 createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb

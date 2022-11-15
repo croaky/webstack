@@ -1,8 +1,8 @@
 # Heroku Crystal
 
-## Setup
+Setup:
 
-```
+```bash
 shards install
 createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" crystal run src/api.cr
@@ -14,7 +14,7 @@ Give it a name and submit.
 Click "GitHub" and select this repo, then "Connect".
 Click "Enable Automatic Deploys"
 
-```
+```bash
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-crystal

@@ -1,9 +1,4 @@
-# Fly Ruby
-
-See example deployed at
-<https://webstack-read-replicas.fly.dev/>.
-
-## Setup
+# Fly Read Replicas
 
 Develop:
 

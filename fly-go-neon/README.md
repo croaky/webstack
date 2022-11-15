@@ -1,8 +1,6 @@
-# Fly Go
+# Fly Neon
 
-See example deployed to [Fly.io](https://fly.io)
-with a [Neon Postgres](https://console.neon.tech/) database
-at <https://webstack-go-neon.fly.dev/>.
+[Neon Postgres](https://console.neon.tech/).
 
 ## Setup
 

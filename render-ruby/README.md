@@ -1,11 +1,8 @@
 # Render Ruby
 
-See example deployed at
-<https://ruby-sinatra.onrender.com>.
-
 ## Setup
 
-```
+```bash
 bundle
 createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb

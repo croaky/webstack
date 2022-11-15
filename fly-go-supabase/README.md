@@ -1,10 +1,5 @@
 # Fly Go w/ Supabase
 
-See example deployed at
-<https://webstack-go-supabase.fly.dev/>.
-
-## Setup
-
 Develop:
 
 ```

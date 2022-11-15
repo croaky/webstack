@@ -1,8 +1,5 @@
 # Railway Deno
 
-See example deployed at
-<https://webstack-deno.up.railway.app/>.
-
 ## Setup
 
 Create a new Railway project with a web service:

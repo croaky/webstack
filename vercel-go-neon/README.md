@@ -1,8 +1,5 @@
 # Vercel Go w/ Neon Postgres database
 
-See example deployed at
-<https://webstack-go-neon.vercel.app/api>.
-
 Vercel supports [serverless functions written in
 Go](https://vercel.com/docs/concepts/functions/supported-languages#go).
 

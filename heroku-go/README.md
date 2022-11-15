@@ -1,11 +1,8 @@
 # Heroku Go
 
-See example deployed at
-<https://webstack-go.herokuapp.com/>.
+Setup:
 
-## Setup
-
-```
+```bash
 go run api.go
 ```
 
@@ -15,7 +12,7 @@ Give it a name and submit.
 Click "GitHub" and select this repo, then "Connect".
 Click "Enable Automatic Deploys"
 
-```
+```bash
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-go
@@ -25,7 +22,7 @@ heroku config:set APP_BASE=heroku-go -a <app>
 heroku addons:create heroku-postgresql:hobby-dev -a <app>
 ```
 
-## Editorial
+Editorial:
 
 * I always forget to put the magic comment `// +heroku goVersion 1.18`
   at the top of `go.mod`. Why isn't `go 1.18` later in the file enough?

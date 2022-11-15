@@ -1,6 +1,6 @@
 # Railway Go
 
-```
+```bash
 go run main.go
 ```
 

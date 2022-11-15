@@ -1,13 +1,8 @@
 # Northflank Go
 
-See example deployed at
-<https://site--us-central--webstack-go--rluc-sxvr.code.run/>.
-
-## Setup
-
 Develop:
 
-```
+```bash
 go run api.go
 ```
 

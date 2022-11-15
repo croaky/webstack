@@ -1,11 +1,8 @@
 # Heroku Node
 
-See example deployed at
-<https://webstack-node-express.herokuapp.com/>.
+Setup:
 
-## Setup
-
-```
+```bash
 npm install
 createdb webstack_dev
 DATABASE_URL="postgres:///webstack_dev" node api.js
@@ -17,7 +14,7 @@ Give it a name and submit.
 Click "GitHub" and select this repo, then "Connect".
 Click "Enable Automatic Deploys"
 
-```
+```bash
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-node

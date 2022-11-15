@@ -1,10 +1,5 @@
 # Fly Go PlanetScale
 
-See example deployed at
-<https://webstack-go-planetscale.fly.dev/>.
-
-## Setup
-
 Develop:
 
 ```

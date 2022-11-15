@@ -1,8 +1,5 @@
 # Vercel Go w/ Cockroach serverless Postgres
 
-See example deployed at
-<https://webstack-go-cockroach.vercel.app/api>.
-
 Vercel supports [serverless functions written in
 Go](https://vercel.com/docs/concepts/functions/supported-languages#go).
 

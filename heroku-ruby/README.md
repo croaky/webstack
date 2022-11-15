@@ -1,11 +1,8 @@
 # Heroku Ruby
 
-See example deployed at
-<https://webstack-ruby-sinatra.herokuapp.com/>.
+Setup:
 
-## Setup
-
-```
+```bash
 bundle
 createdb webstack_dev
 bundle exec ruby api.rb
@@ -17,7 +14,7 @@ Give it a name and submit.
 Click "GitHub" and select this repo, then "Connect".
 Click "Enable Automatic Deploys"
 
-```
+```bash
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-ruby

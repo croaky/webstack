@@ -1,11 +1,8 @@
 # Render Go
 
-See example deployed at
-<https://webstack-go.onrender.com/>.
+Develop:
 
-## Setup
-
-```
+```bash
 go run main.go
 ```
 

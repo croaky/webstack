@@ -1,10 +1,5 @@
 # Fly Go
 
-See example deployed at
-<https://webstack-go.fly.dev/>.
-
-## Setup
-
 Develop:
 
 ```
