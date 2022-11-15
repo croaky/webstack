@@ -28,6 +28,7 @@ for (let i = 0; i < data.length; i++) {
 }
 
 // add historical data for apps I've shut down to save money
+sorted.push(["fly-go-crunchy-bridge", 100.0, 303, 572]);
 sorted.push(["fly-go-planetscale", 99.99, 207, 523]);
 sorted.push(["fly-go-postgres-read-replicas", 99.99, 115, 434]);
 sorted.push(["fly-go-sqlite", 99.99, 125, 392]);
