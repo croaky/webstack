@@ -35,16 +35,16 @@ sorted.push(["fly-go-supabase", 99.99, 214, 546]);
 sorted.push(["heroku-go-postgres", 99.99, 303, 829]);
 sorted.push(["render-go-postgres", 99.99, 494, 622]);
 
--(
-  // sort by p95 response time as third most important
-  sorted.sort((a, b) => a[3] - b[3])
-);
-
-// sort by avg response time as second most important
-sorted.sort((a, b) => a[2] - b[2]);
-
-// sort by uptime as most important
+// Sort by uptime as third most important.
+// In reality, it's most important but all these services
+// are proving to offer 99.99% uptime in practice.
 sorted.sort((a, b) => b[1] - a[1]);
+
+// Sort by p95 response time as second most important.
+sorted.sort((a, b) => a[3] - b[3]);
+
+// Sort by avg response time as most important.
+sorted.sort((a, b) => a[2] - b[2]);
 
 const table = new AsciiTable("API checks last 7 days");
 table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
