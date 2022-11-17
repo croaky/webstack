@@ -23,19 +23,20 @@ for (let i = 0; i < data.length; i++) {
       data[i]["aggregate"]["successRatio"].toFixed(2),
       data[i]["aggregate"]["avg"],
       data[i]["aggregate"]["p95"],
+      "y",
     ]);
   }
 }
 
 // add historical data for apps I've shut down to save money
-sorted.push(["fly-go-cockroach", (100.0).toFixed(2), 246, 648]);
-sorted.push(["fly-go-crunchy-bridge", (100.0).toFixed(2), 254, 574]);
-sorted.push(["fly-go-planetscale", 99.99, 207, 523]);
-sorted.push(["fly-go-postgres-read-replicas", 99.99, 115, 434]);
-sorted.push(["fly-go-sqlite", 99.99, 125, 392]);
-sorted.push(["fly-go-supabase", 99.99, 214, 546]);
-sorted.push(["heroku-go-postgres", 99.99, 303, 829]);
-sorted.push(["render-go-postgres", 99.99, 494, 622]);
+sorted.push(["fly-go-cockroach", (100.0).toFixed(2), 246, 648, "n"]);
+sorted.push(["fly-go-crunchy-bridge", (100.0).toFixed(2), 254, 574, "n"]);
+sorted.push(["fly-go-planetscale", 99.99, 207, 523], "n");
+sorted.push(["fly-go-postgres-read-replicas", 99.99, 115, 434, "n"]);
+sorted.push(["fly-go-sqlite", 99.99, 125, 392, "n"]);
+sorted.push(["fly-go-supabase", 99.99, 214, 546, "n"]);
+sorted.push(["heroku-go-postgres", 99.99, 303, 829, "n"]);
+sorted.push(["render-go-postgres", 99.99, 494, 622, "n"]);
 
 // Sort by uptime as third most important.
 // In reality, it's most important but all these services
@@ -48,8 +49,8 @@ sorted.sort((a, b) => a[3] - b[3]);
 // Sort by avg response time as most important.
 sorted.sort((a, b) => a[2] - b[2]);
 
-const table = new AsciiTable("API checks last 7 days");
-table.setHeading("Name", "OK (%)", "Avg (ms)", "p95 (ms)");
+const table = new AsciiTable("API checks");
+table.setHeading("name", "ok %", "avg ms", "p95 ms", "active");
 table.setAlign(1, AsciiAlign.RIGHT);
 sorted.forEach((row) => table.addRow(row));
 
