@@ -50,7 +50,7 @@ sorted.sort((a, b) => a[3] - b[3]);
 sorted.sort((a, b) => a[2] - b[2]);
 
 const table = new AsciiTable("API checks");
-table.setHeading("name", "ok %", "avg ms", "p95 ms", "active");
+table.setHeading("stack", "ok %", "avg ms", "p95 ms", "active");
 table.setAlign(1, AsciiAlign.RIGHT);
 sorted.forEach((row) => table.addRow(row));
 
