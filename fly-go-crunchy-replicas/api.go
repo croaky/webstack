@@ -21,19 +21,11 @@ func main() {
 		dbUrl = "postgres:///webstack_dev"
 	}
 	region := os.Getenv("FLY_REGION")
-	eurUrl := os.Getenv("EUROPE_URL")
-	canUrl := os.Getenv("CANADA_URL")
-	ausUrl := os.Getenv("AUSTRALIA_URL")
+	londonUrl := os.Getenv("LONDON_URL")
 
 	// if not in primary region...
-	if region == "ams" && eurUrl != "" {
-		dbUrl = eurUrl
-	}
-	if region == "yul" && canUrl != "" {
-		dbUrl = canUrl
-	}
-	if region == "syd" && ausUrl != "" {
-		dbUrl = ausUrl
+	if region == "lhr" && londonUrl != "" {
+		dbUrl = londonUrl
 	}
 
 	// db
