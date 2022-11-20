@@ -12,12 +12,13 @@ Create a Postgres database:
 * Choose a region to be close to app server.
 * Copy "Connection string".
 
-Go to <https://railway.app/new>.
-Click "Deploy from Repo".
-Select this repo.
-Select `main` branch.
-Click "Deploy".
+Go to <https://railway.app/new>:
 
-Click "Settings" tab.
-Set "Root directory" to `/railway-go-crunchy-bridge`.
-Set "Healthcheck Path" to `/`.
+* Click "Deploy from Repo".
+* Select this repo.
+* Select `main` branch.
+* Click "Deploy".
+
+* Click "Settings" tab.
+* Set "Root directory" to `/railway-go-crunchy-bridge`.
+* Set "Healthcheck Path" to `/`.
