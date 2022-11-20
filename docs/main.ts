@@ -36,6 +36,7 @@ sorted.push(["fly-go-postgres-read-replicas", 99.99, 115, 434, "n"]);
 sorted.push(["fly-go-sqlite", 99.99, 125, 392, "n"]);
 sorted.push(["fly-go-supabase", 99.99, 214, 546, "n"]);
 sorted.push(["heroku-go-postgres", 99.99, 303, 829, "n"]);
+sorted.push(["railway-go-postgres", 99.99, 493, 642, "n"]);
 sorted.push(["render-go-postgres", 99.99, 494, 622, "n"]);
 
 // Sort by uptime as third most important.
