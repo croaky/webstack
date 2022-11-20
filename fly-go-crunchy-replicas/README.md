@@ -3,8 +3,8 @@
 This stack involves:
 
 * a web application written in Go
-* deployed to 4 regions on Fly.io
-* querying a Postgres primary and read replicas on Crunchy Bridge
+* deployed to 2 regions on Fly.io
+* querying a Postgres primary and read replica on Crunchy Bridge
 * networked with Tailscale
 
 Develop:
