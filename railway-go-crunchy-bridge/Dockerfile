@@ -5,7 +5,8 @@ COPY . ./
 RUN go build -o /app/server
 
 # Build Tailscale
-RUN curl -fsSL https://tailscale.com/install.sh | sh
+ENV TSFILE=tailscale_1.32.2_amd64.tgz
+RUN wget https://pkgs.tailscale.com/stable/${TSFILE} && tar xzf ${TSFILE} --strip-components=1
 
 FROM alpine:latest
 RUN apk update && apk add --update sudo ca-certificates && rm -rf /var/cache/apk/*
