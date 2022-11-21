@@ -6,7 +6,7 @@ SOCKET="$HOME/tailscale-storage/tailscale.sock"
 # Connect machine to Tailscale tailnet
 /app/tailscaled --state=mem: --tun=userspace-networking --socks5-server="localhost:1055" --socket="$SOCKET" &
 
-until /app/tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="$HOST" --socket="$SOCKET"
+until /app/tailscale --socket="$SOCKET" up --authkey="$TAILSCALE_AUTHKEY" --hostname="$HOST"
 do
   echo "Waiting for Tailscale auth"
   sleep 5
