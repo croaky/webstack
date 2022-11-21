@@ -13,8 +13,7 @@ FROM alpine:latest
 
 # Install some dependencies
 RUN apk update
-RUN apk add --update sudo bash
-RUN apk add ca-certificates
+RUN apk add --update sudo bash ca-certificates
 RUN rm -rf /var/cache/apk/*
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 RUN mkdir -p $HOME/tailscale-storage
