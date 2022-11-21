@@ -14,7 +14,7 @@ func main() {
 	// env
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
-		port = "8080"
+		port = "1055"
 	}
 	dbUrl, ok := os.LookupEnv("DATABASE_URL")
 	if !ok {
