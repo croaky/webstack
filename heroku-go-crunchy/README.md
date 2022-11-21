@@ -78,7 +78,6 @@ Go to <https://dashboard.heroku.com/apps>:
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-go-crunchy
-heroku config:set APP_BASE=heroku-go-crunchy -a <app>
 heroku config:set TAILSCALE_AUTHKEY=<paste> -a <app>
 heroku labs:enable runtime-dyno-metadata -a <app>
 heroku stack:set container -a <app>
