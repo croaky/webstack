@@ -14,7 +14,7 @@ COPY --from=builder /app/start.sh /app/start.sh
 COPY --from=builder /app/server /app/server
 COPY --from=builder /app/tailscaled /app/tailscaled
 COPY --from=builder /app/tailscale /app/tailscale
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+RUN apk update && apk add ca-certificates iptables ip6tables && rm -rf /var/cache/apk/*
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
 # Run on container startup
