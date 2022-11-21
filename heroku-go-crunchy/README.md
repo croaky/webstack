@@ -81,6 +81,7 @@ git remote rename heroku heroku-go-crunchy
 heroku config:set APP_BASE=heroku-go-crunchy -a <app>
 heroku config:set TAILSCALE_AUTHKEY=<paste> -a <app>
 heroku labs:enable runtime-dyno-metadata -a <app>
+heroku stack:set container -a <app>
 ```
 
 Commit to the repo to deploy.
