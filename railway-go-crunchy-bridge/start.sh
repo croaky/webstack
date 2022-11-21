@@ -7,4 +7,4 @@ ID="${RAILWAY_GIT_COMMIT_SHA:0:8}"
 /app/tailscale status
 
 # Run server
-ALL_PROXY="socks5://localhost:1055/" /app/server
+/app/server
