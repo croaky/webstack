@@ -18,4 +18,5 @@ RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
 # Run on container startup
+EXPOSE 8080
 CMD ["/app/start.sh"]
