@@ -11,6 +11,14 @@ RUN wget https://pkgs.tailscale.com/stable/${TSFILE} && tar xzf ${TSFILE} --stri
 # Second of multi-stage Docker build
 FROM alpine:latest
 
+# Install some dependencies
+RUN apk update
+RUN apk add --update sudo bash
+RUN apk add ca-certificates
+RUN rm -rf /var/cache/apk/*
+RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
+RUN mkdir -p $HOME/tailscale-storage
+
 # Tailscaled can't run as root user, cuz of an SO_MARK issue.
 # See: https://github.com/tailscale/tailscale/issues/634.
 ARG USER=default
@@ -26,10 +34,6 @@ COPY --from=builder /app/start.sh /app/start.sh
 COPY --from=builder /app/server /app/server
 COPY --from=builder /app/tailscaled /app/tailscaled
 COPY --from=builder /app/tailscale /app/tailscale
-
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
-RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
-RUN mkdir -p $HOME/tailscale-storage
 
 # Run on container startup
 CMD ["/app/start.sh"]
