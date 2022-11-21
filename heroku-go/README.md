@@ -6,11 +6,12 @@ Setup:
 go run api.go
 ```
 
-Go to <https://dashboard.heroku.com/apps>.
-Click "New" > "Create new app".
-Give it a name and submit.
-Click "GitHub" and select this repo, then "Connect".
-Click "Enable Automatic Deploys"
+Go to <https://dashboard.heroku.com/apps>:
+
+* Click "New" > "Create new app".
+* Give it a name and submit.
+* Click "GitHub" and select this repo, then "Connect".
+* Click "Enable Automatic Deploys"
 
 ```bash
 heroku login
