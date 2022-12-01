@@ -33,6 +33,27 @@ In the Postgres shell as the `postgres` superuser,
 CREATE EXTENSION crunchy_pooler;
 ```
 
+Create a reusable, ephemeral
+[Tailscale auth key](https://login.tailscale.com/admin/settings/keys).
+
+In the Crunchy Bridge web UI:
+
+- Click "Networking".
+- Delete the two "fully open firewall" rules `::/0` and `0.0.0.0/0`.
+- Click "Tailscale".
+- Paste the Tailscale auth key.
+- Click "Connect Tailscale".
+
+In the Tailscale web UI:
+
+- Go to the [Machines](https://login.tailscale.com/admin/machines) page.
+- Click the three dots next to the newly-connected Crunchy database.
+- Click "Edit machine name..".
+- Rename the machine something like `crunchy-n-california`.
+- Click the machine name.
+- Copy the domain name into a temporary text file.
+  It will look something like `crunchy-n-california.taile1234.ts.net`.
+
 In the Crunchy Bridge web UI:
 
 - Click "Connection"
@@ -57,4 +78,4 @@ Go to <https://railway.app/new>:
 - Set "Root directory" to `/railway-go-crunchy-bridge`.
 - Click "Variables".
 - Click "+ New Variable".
-- Enter "DATABASE_URL" and paste in the Crunchy connection string.
+- Enter "DATABASE_URL" and paste in the Tailscale'd Crunchy connection string.
