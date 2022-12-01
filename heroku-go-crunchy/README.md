@@ -5,6 +5,7 @@ This stack involves:
 * a web application written in Go
 * deployed to Heroku
 * connecting to a Postgres database via PgBouncer on Crunchy Bridge
+* networked with Tailscale
 
 Develop:
 
@@ -15,7 +16,7 @@ DATABASE_URL="postgres:///webstack_dev" go run api.go
 Set up Crunchy Bridge:
 
 * Go to [Crunchy Bridge](https://crunchybridge.com/).
-* Create a cluster in AWS `us-east-1` (N. Virginia).
+* Create a cluster in AWS `us-east-1` (Virginia).
 * Click "Connection" tab.
 * Select "Role: postgres" and "Format: psql".
 * Click "Copy", then paste into a shell:
@@ -30,6 +31,27 @@ In the Postgres shell as the `postgres` superuser,
 ```sql
 CREATE EXTENSION crunchy_pooler;
 ```
+
+Create a reusable, ephemeral
+[Tailscale auth key](https://login.tailscale.com/admin/settings/keys).
+
+In the Crunchy Bridge web UI:
+
+* Click "Networking".
+* Delete the two "fully open firewall" rules `::/0` and `0.0.0.0/0`.
+* Click "Tailscale".
+* Paste the Tailscale auth key.S
+* Click "Connect Tailscale".
+
+In the Tailscale web UI:
+
+* Go to the [Machines](https://login.tailscale.com/admin/machines) page.
+* Click the three dots next to the newly-connected Crunchy database.
+* Click "Edit machine name..".
+* Rename the machine something like `crunchy-virginia`.
+* Click the machine name.
+* Copy the domain name into a temporary text file.
+  It will look something like `crunchy-virginia.taile1234.ts.net`.
 
 In the Crunchy Bridge web UI:
 
@@ -56,9 +78,9 @@ Go to <https://dashboard.heroku.com/apps>:
 heroku login
 heroku git:remote -a <app>
 git remote rename heroku heroku-go-crunchy
-heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
-heroku buildpacks:add -a <app> heroku/go
-heroku config:set APP_BASE=heroku-go-crunchy -a <app>
+heroku config:set TAILSCALE_AUTHKEY=<paste> -a <app>
+heroku labs:enable runtime-dyno-metadata -a <app>
+heroku stack:set container -a <app>
 ```
 
 Commit to the repo to deploy.
