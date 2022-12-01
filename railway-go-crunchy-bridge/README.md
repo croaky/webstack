@@ -5,6 +5,7 @@ This stack involves:
 * a web application written in Go
 * deployed to Railway
 * querying a Postgres database on Crunchy Bridge
+* networked with Tailscale
 
 Develop:
 
