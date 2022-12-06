@@ -14,7 +14,6 @@ Set up Fly:
 
 ```
 brew install flyctl
-flyctl auth login
-rm -rf ~/.docker
+fly auth login
 flyctl launch --remote-only
 ```
