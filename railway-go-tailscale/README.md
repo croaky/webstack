@@ -75,7 +75,7 @@ Go to <https://railway.app/new>:
 - Select `main` branch.
 - Click "Deploy now".
 - Click "Settings" tab.
-- Set "Root directory" to `/railway-go-crunchy-bridge`.
+- Set "Root directory" to `/railway-go-tailscale`.
 - Click "Variables".
 - Click "+ New Variable".
 - Enter "DATABASE_URL" and paste in the Tailscale'd Crunchy connection string.

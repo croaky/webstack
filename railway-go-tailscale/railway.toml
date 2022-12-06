@@ -1,6 +1,6 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "railway-go-crunchy-bridge/Dockerfile"
+dockerfilePath = "railway-go-tailscale/Dockerfile"
 
 [deploy]
 restartPolicyType = "ON_FAILURE"
