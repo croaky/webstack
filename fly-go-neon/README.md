@@ -15,5 +15,5 @@ Set up Fly:
 ```
 brew install flyctl
 fly auth login
-flyctl launch --remote-only
+fly launch --remote-only
 ```

@@ -1,4 +1,4 @@
-# fly.toml file generated for webstack-go-neon on 2022-09-20T19:25:07-04:00
+# fly.toml file generated for webstack-go-neon on 2022-12-06T16:12:46-05:00
 
 app = "webstack-go-neon"
 kill_signal = "SIGINT"

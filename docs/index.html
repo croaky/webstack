@@ -174,29 +174,29 @@
       <figure>
         <pre>
         <code>
-.------------------------------------------------------------.
-|                         API checks                         |
-|------------------------------------------------------------|
-|             stack               |  ok %  | avg ms | p95 ms |
-|---------------------------------|--------|--------|--------|
-| fly-go-crunchy-bridge-tailscale | 100.00 |    60  |    241 |
-| fly-go-postgres-read-replicas   |  99.99 |    115 |    434 |
-| fly-go-sqlite                   |  99.99 |    125 |    392 |
-| fly-go-planetscale              |  99.99 |    207 |    523 |
-| fly-go-supabase                 |  99.99 |    214 |    546 |
-| fly-go-cockroach                | 100.00 |    246 |    648 |
-| fly-go-crunchy-bridge           | 100.00 |    254 |    574 |
-| heroku-go-crunchy               |  99.99 |    257 |    387 |
-| heroku-go-postgres              |  99.99 |    303 |    829 |
-| fly-go-neon                     | 100.00 |    361 |    510 |
-| railway-go-crunchy-bridge       | 100.00 |    420 |    550 |
-| railway-go-postgres             |  99.99 |    493 |    642 |
-| render-go-postgres              |  99.99 |    494 |    622 |
-'------------------------------------------------------------'</code>
+.--------------------------------------------------------------.
+|                          API checks                          |
+|--------------------------------------------------------------|
+|              stack                |  ok %  | avg ms | p95 ms |
+|-----------------------------------|--------|--------|--------|
+| fly-go-postgres-replicas          |  99.99 |    115 |    434 |
+| fly-go-tailscale-crunchy-replicas | 100.00 |    144 |    310 |
+| fly-go-neon                       | 100.00 |    187 |    341 |
+| heroku-go-crunchy                 |  99.99 |    198 |    354 |
+| fly-go-supabase                   |  99.99 |    214 |    546 |
+| heroku-go-postgres                |  99.99 |    218 |    336 |
+| fly-go-cockroach                  | 100.00 |    252 |    593 |
+| fly-go-crunchy                    | 100.00 |    254 |    574 |
+| railway-go-neon                   | 100.00 |    255 |    465 |
+| railway-go-postgres               | 100.00 |    258 |    481 |
+| railway-go-crunchy                | 100.00 |    264 |    448 |
+| render-go-neon                    | 100.00 |    265 |    485 |
+| render-go-postgres                |  99.99 |    273 |    545 |
+'--------------------------------------------------------------'</code>
       </pre>
         <figcaption>
           API checks via <a href="https://www.checklyhq.com/">Checkly</a>
-          from North America and Europe.
+          from N. California, N. Virginia, and London.
         </figcaption>
       </figure>
 
