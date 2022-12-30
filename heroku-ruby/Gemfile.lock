@@ -2,8 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    async (2.3.1)
+      console (~> 1.10)
+      io-event (~> 1.1)
+      timers (~> 4.1)
     connection_pool (2.2.5)
+    console (1.16.2)
+      fiber-local
     diff-lcs (1.5.0)
+    fiber-local (1.0.0)
+    io-event (1.1.4)
     json (2.6.3)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
@@ -53,6 +61,9 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
+    rubocop-performance (1.15.1)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     sinatra (3.0.4)
@@ -85,6 +96,7 @@ GEM
       yard-sorbet
     thor (1.2.1)
     tilt (2.0.11)
+    timers (4.3.5)
     unicode-display_width (2.3.0)
     unparser (0.6.5)
       diff-lcs (~> 1.3)
@@ -103,12 +115,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  async
   connection_pool
   pg
   puma
   rack-test
   rspec
   rubocop
+  rubocop-performance
   sinatra
   sorbet
   sorbet-runtime

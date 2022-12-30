@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-ruby "~> 3"
+ruby "3.2.0"
 
+gem "async"
 gem "connection_pool"
 gem "pg"
 gem "puma"
 gem "sinatra"
-gem 'sorbet-runtime'
+gem "sorbet-runtime"
 
 group :test do
   gem "sorbet"
-  gem 'tapioca', require: false
+  gem "tapioca", require: false
   gem "rack-test"
   gem "rspec"
   gem "rubocop"
+  gem "rubocop-performance"
 end

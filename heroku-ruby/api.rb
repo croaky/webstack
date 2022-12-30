@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+require "async"
 require "connection_pool"
 require "pg"
 require "sinatra"
@@ -52,17 +55,26 @@ before do
 end
 
 get "/" do
-  [
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" },
-    Thread.new { db.exec "SELECT 1" }
-  ].each(&:join)
+  h = {}
+
+  # [
+  #   Thread.new { h["a"] = db.exec "SELECT 1" },
+  #   Thread.new { h["b"] = db.exec "SELECT 1" },
+  #   Thread.new { h["c"] = db.exec "SELECT 1" },
+  # ].each(&:join)
+
+  Async do |t|
+    t.async { h["a"] = db.exec("SELECT version()").first["version"] }
+    t.async { h["b"] = db.exec("SELECT version()").first["version"] }
+    t.async { h["c"] = db.exec("SELECT version()").first["version"] }
+  end
+
   content_type :json
-  {status: "ok"}.to_json
+  h.merge(status: "ok").to_json(
+    array_nl: "\n",
+    object_nl: "\n",
+    indent: "  ",
+    space_before: " ",
+    space: " "
+  )
 end
