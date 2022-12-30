@@ -5,7 +5,7 @@ Setup:
 ```bash
 bundle
 createdb webstack_dev
-bundle exec ruby api.rb
+DATABASE_URL="postgres:///webstack_dev" bundle exec ruby api.rb
 ```
 
 Go to <https://dashboard.heroku.com/apps>.

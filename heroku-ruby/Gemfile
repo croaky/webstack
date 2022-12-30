@@ -6,8 +6,12 @@ gem "connection_pool"
 gem "pg"
 gem "puma"
 gem "sinatra"
+gem 'sorbet-runtime'
 
 group :test do
+  gem "sorbet"
+  gem 'tapioca', require: false
   gem "rack-test"
   gem "rspec"
+  gem "rubocop"
 end
