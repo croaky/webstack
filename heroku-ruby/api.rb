@@ -52,7 +52,17 @@ before do
 end
 
 get "/" do
-  db.exec "SELECT 1"
+  [
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" },
+    Thread.new { db.exec "SELECT 1" }
+  ].each(&:join)
   content_type :json
   {status: "ok"}.to_json
 end
