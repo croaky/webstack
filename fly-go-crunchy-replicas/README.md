@@ -40,7 +40,7 @@ In the Crunchy Bridge web UI:
 - Click "Networking".
 - Delete the two "fully open firewall" rules `::/0` and `0.0.0.0/0`.
 - Click "Tailscale".
-- Paste the Tailscale auth key.S
+- Paste the Tailscale auth key.
 - Click "Connect Tailscale".
 
 In the Tailscale web UI:
