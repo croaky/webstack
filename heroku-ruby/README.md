@@ -21,6 +21,5 @@ git remote rename heroku heroku-ruby
 heroku buildpacks:add -a <app> https://github.com/lstoll/heroku-buildpack-monorepo
 heroku buildpacks:add -a <app> heroku/ruby
 heroku config:set APP_BASE=heroku-ruby -a <app>
-heroku config:set APP_ENV=prod -a <app>
-heroku addons:create heroku-postgresql:hobby-dev -a <app>
+heroku addons:create heroku-postgresql -a <app>
 ```
