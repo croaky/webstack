@@ -64,7 +64,7 @@ In the Crunchy Bridge web UI:
 - Copy the edited connection string, which will look something like:
 
 ```
-postgres://application:password@crunchy-n-california.taile1234.ts.net:5431/postgres"
+postgres://application:password@crunchy-n-california.taile1234.ts.net:5431/postgres
 ```
 
 Create Fly app:
