@@ -5,7 +5,7 @@ require "sinatra"
 class DB
   def initialize
     @pool = ConnectionPool.new(size: 5, timeout: 5) {
-      PG.connect(ENV.fetch("DATABASE_URL"))
+      PG.connect(ENV.fetch("DATABASE_URL", "postgres:///webstack_dev"))
     }
   end
 
