@@ -20,13 +20,6 @@ func main() {
 	if !ok {
 		dbUrl = "postgres:///webstack_dev"
 	}
-	region := os.Getenv("FLY_REGION")
-	londonUrl := os.Getenv("LONDON_URL")
-
-	// if not in primary region...
-	if region == "lhr" && londonUrl != "" {
-		dbUrl = londonUrl
-	}
 
 	// db
 	db, err := pgxpool.Connect(context.Background(), dbUrl)
