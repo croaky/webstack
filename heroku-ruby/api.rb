@@ -20,6 +20,10 @@ end
 
 db = DB.new
 
+configure do
+  set :protection, :except => [:json_csrf]
+end
+
 get "/" do
   db.exec "SELECT 1"
   content_type :json
