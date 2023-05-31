@@ -2,7 +2,7 @@
 
 module server
 
-go 1.19
+go 1.20
 
 require github.com/jackc/pgx/v4 v4.17.2
 
