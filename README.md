@@ -1,3 +1,3 @@
 # webstack
 
-A project to prototype web stacks. <https://webstack.dancroak.com/>
+A project to prototype web stacks. <https://dancroak.com/webstack>
