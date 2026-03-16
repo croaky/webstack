@@ -15,5 +15,5 @@ require (
 	github.com/jackc/puddle v1.2.1 // indirect
 	github.com/lib/pq v1.10.4 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 )
